@@ -1,0 +1,168 @@
+apiVersion: kubeflow.org/v1
+kind: Notebook
+metadata:
+  annotations:
+    notebooks.opendatahub.io/inject-oauth: 'true'
+    opendatahub.io/image-display-name: anythingllm Workbench, providing out of the box chatbot, RAG, agents,...
+    notebooks.opendatahub.io/oauth-logout-url: '$(DASHBOARD-URL)/projects/tinyllama-cpu-demo?notebookLogout=anythingllm'
+    opendatahub.io/accelerator-name: ''
+    openshift.io/description: ''
+    openshift.io/display-name: AnythingLLM
+    notebooks.opendatahub.io/last-image-selection: 'custom-anythingllm:1.3.0'
+    notebooks.opendatahub.io/last-size-selection: Standard
+    opendatahub.io/username: blueprint@redhat.com
+  name: anythingllm
+  namespace: tinyllama-cpu-demo
+  labels:
+    app: anythingllm
+    opendatahub.io/dashboard: 'true'
+    opendatahub.io/odh-managed: 'true'
+spec:
+  template:
+    spec:
+      affinity: {}
+      containers:
+        - resources:
+            limits:
+              cpu: '2'
+              memory: 8Gi
+            requests:
+              cpu: '1'
+              memory: 6Gi
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /notebook/tinyllama-cpu-demo/anythingllm/api
+              port: notebook-port
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: anythingllm
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /notebook/tinyllama-cpu-demo/anythingllm/api
+              port: notebook-port
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          env:
+            - name: NOTEBOOK_ARGS
+              value: |-
+                --ServerApp.port=8888
+                                  --ServerApp.token=''
+                                  --ServerApp.password=''
+                                  --ServerApp.base_url=/notebook/tinyllama-cpu-demo/anythingllm
+                                  --ServerApp.quit_button=False
+                                  --ServerApp.tornado_settings={"user":"blueprint@redhat.com","hub_host":"$(DASHBOARD-URL)","hub_prefix":"/projects/tinyllama-cpu-demo"}
+            - name: JUPYTER_IMAGE
+              value: >-
+                image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/custom-anythingllm:1.3.0
+          ports:
+            - containerPort: 8888
+              name: notebook-port
+              protocol: TCP
+          imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: /opt/app-root/src
+              name: anythingllm
+            - mountPath: /dev/shm
+              name: shm
+          image: >-
+            image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/custom-anythingllm:1.3.0
+          workingDir: /opt/app-root/src
+        - resources:
+            limits:
+              cpu: 100m
+              memory: 64Mi
+            requests:
+              cpu: 100m
+              memory: 64Mi
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /oauth/healthz
+              port: oauth-proxy
+              scheme: HTTPS
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: oauth-proxy
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /oauth/healthz
+              port: oauth-proxy
+              scheme: HTTPS
+            initialDelaySeconds: 30
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          env:
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          ports:
+            - containerPort: 8443
+              name: oauth-proxy
+              protocol: TCP
+          imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: /etc/oauth/config
+              name: oauth-config
+            - mountPath: /etc/tls/private
+              name: tls-certificates
+          image: >-
+            registry.redhat.io/openshift4/ose-oauth-proxy@sha256:4bef31eb993feb6f1096b51b4876c65a6fb1f4401fee97fa4f4542b6b7c9bc46
+          args:
+            - '--provider=openshift'
+            - '--https-address=:8443'
+            - '--http-address='
+            - '--openshift-service-account=anythingllm'
+            - '--cookie-secret-file=/etc/oauth/config/cookie_secret'
+            - '--cookie-expire=24h0m0s'
+            - '--tls-cert=/etc/tls/private/tls.crt'
+            - '--tls-key=/etc/tls/private/tls.key'
+            - '--upstream=http://localhost:8888'
+            - '--upstream-ca=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt'
+            - '--email-domain=*'
+            - '--skip-provider-button'
+            - >-
+              --openshift-sar={"verb":"get","resource":"notebooks","resourceAPIGroup":"kubeflow.org","resourceName":"anythingllm","namespace":"$(NAMESPACE)"}
+            - >-
+              --logout-url=$(DASHBOARD-URL)/projects/tinyllama-cpu-demo?notebookLogout=anythingllm
+      enableServiceLinks: false
+      serviceAccountName: anythingllm
+      tolerations:
+        - effect: NoSchedule
+          key: notebooksonly
+          operator: Exists
+      volumes:
+        - name: anythingllm
+          persistentVolumeClaim:
+            claimName: anythingllm
+        - emptyDir:
+            medium: Memory
+          name: shm
+        - configMap:
+            items:
+              - key: ca-bundle.crt
+                path: ca-bundle.crt
+            name: workbench-trusted-ca-bundle
+            optional: true
+          name: trusted-ca
+        - name: oauth-config
+          secret:
+            defaultMode: 420
+            secretName: anythingllm-oauth-config
+        - name: tls-certificates
+          secret:
+            defaultMode: 420
+            secretName: anythingllm-tls
+  readyReplicas: 1

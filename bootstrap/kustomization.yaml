@@ -1,0 +1,6 @@
+resources:
+  - namespace.yaml
+  - workbench-pvc.yaml
+  - custom-anythingllm.yaml
+  - workbench.yaml
+  - inferenceservice.yaml
