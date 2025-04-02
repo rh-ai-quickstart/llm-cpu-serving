@@ -1,15 +1,16 @@
+---
 apiVersion: kubeflow.org/v1
 kind: Notebook
 metadata:
   annotations:
     notebooks.opendatahub.io/inject-oauth: 'true'
     opendatahub.io/image-display-name: anythingllm Workbench, providing out of the box chatbot, RAG, agents,...
-    notebooks.opendatahub.io/oauth-logout-url: '$(DASHBOARD-URL)/projects/tinyllama-cpu-demo?notebookLogout=anythingllm'
+    notebooks.opendatahub.io/oauth-logout-url: 'https://rhods-dashboard-redhat-ods-applications.{{ include "app_domain" . }}/projects/tinyllama-cpu-demo?notebookLogout=anythingllm'
     opendatahub.io/accelerator-name: ''
     openshift.io/description: ''
     openshift.io/display-name: AnythingLLM
-    notebooks.opendatahub.io/last-image-selection: 'custom-anythingllm:1.3.0'
-    notebooks.opendatahub.io/last-size-selection: Standard
+    notebooks.opendatahub.io/last-image-selection: 'custom-anythingllm:1.7.5'
+    notebooks.opendatahub.io/last-size-selection: Small
     opendatahub.io/username: blueprint@redhat.com
   name: anythingllm
   namespace: tinyllama-cpu-demo
@@ -28,7 +29,7 @@ spec:
               memory: 8Gi
             requests:
               cpu: '1'
-              memory: 6Gi
+              memory: 8Gi
           readinessProbe:
             failureThreshold: 3
             httpGet:
@@ -58,10 +59,19 @@ spec:
                                   --ServerApp.password=''
                                   --ServerApp.base_url=/notebook/tinyllama-cpu-demo/anythingllm
                                   --ServerApp.quit_button=False
-                                  --ServerApp.tornado_settings={"user":"blueprint@redhat.com","hub_host":"$(DASHBOARD-URL)","hub_prefix":"/projects/tinyllama-cpu-demo"}
+                                  --ServerApp.tornado_settings={"user":"blueprint@redhat.com","hub_host":"https://rhods-dashboard-redhat-ods-applications.{{ include "app_domain" . }}","hub_prefix":"/projects/tinyllama-cpu-demo"}
             - name: JUPYTER_IMAGE
-              value: >-
-                image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/custom-anythingllm:1.3.0
+              value: 'image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/custom-anythingllm:1.7.5'
+            - name: SSL_CERT_FILE
+              value: /etc/pki/tls/custom-certs/ca-bundle.crt
+            - name: PIPELINES_SSL_SA_CERTS
+              value: /etc/pki/tls/custom-certs/ca-bundle.crt
+            - name: GIT_SSL_CAINFO
+              value: /etc/pki/tls/custom-certs/ca-bundle.crt
+            - name: PIP_CERT
+              value: /etc/pki/tls/custom-certs/ca-bundle.crt
+            - name: REQUESTS_CA_BUNDLE
+              value: /etc/pki/tls/custom-certs/ca-bundle.crt
           ports:
             - containerPort: 8888
               name: notebook-port
@@ -72,8 +82,14 @@ spec:
               name: anythingllm
             - mountPath: /dev/shm
               name: shm
-          image: >-
-            image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/custom-anythingllm:1.3.0
+            - mountPath: /etc/pki/tls/custom-certs/ca-bundle.crt
+              name: trusted-ca
+              readOnly: true
+              subPath: ca-bundle.crt
+          envFrom:
+            - secretRef:
+                name: tinyllama-vllm-cpu
+          image: 'image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/custom-anythingllm:1.7.5'
           workingDir: /opt/app-root/src
         - resources:
             limits:
@@ -118,8 +134,7 @@ spec:
               name: oauth-config
             - mountPath: /etc/tls/private
               name: tls-certificates
-          image: >-
-            registry.redhat.io/openshift4/ose-oauth-proxy@sha256:4bef31eb993feb6f1096b51b4876c65a6fb1f4401fee97fa4f4542b6b7c9bc46
+          image: 'registry.redhat.io/openshift4/ose-oauth-proxy@sha256:4bef31eb993feb6f1096b51b4876c65a6fb1f4401fee97fa4f4542b6b7c9bc46'
           args:
             - '--provider=openshift'
             - '--https-address=:8443'
@@ -133,16 +148,10 @@ spec:
             - '--upstream-ca=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt'
             - '--email-domain=*'
             - '--skip-provider-button'
-            - >-
-              --openshift-sar={"verb":"get","resource":"notebooks","resourceAPIGroup":"kubeflow.org","resourceName":"anythingllm","namespace":"$(NAMESPACE)"}
-            - >-
-              --logout-url=$(DASHBOARD-URL)/projects/tinyllama-cpu-demo?notebookLogout=anythingllm
+            - '--openshift-sar={"verb":"get","resource":"notebooks","resourceAPIGroup":"kubeflow.org","resourceName":"anythingllm","namespace":"$(NAMESPACE)"}'
+            - '--logout-url=https://rhods-dashboard-redhat-ods-applications.{{ include "app_domain" . }}/projects/tinyllama-cpu-demo?notebookLogout=anythingllm'
       enableServiceLinks: false
       serviceAccountName: anythingllm
-      tolerations:
-        - effect: NoSchedule
-          key: notebooksonly
-          operator: Exists
       volumes:
         - name: anythingllm
           persistentVolumeClaim:

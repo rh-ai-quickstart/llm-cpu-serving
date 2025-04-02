@@ -1,3 +1,3 @@
 # vllm-cpu-blueprint
 
-oc apply -f bootstrap/
+helm install vllm-cpu . --namespace tinyllama-cpu-demo
