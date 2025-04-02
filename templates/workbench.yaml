@@ -5,7 +5,7 @@ metadata:
   annotations:
     notebooks.opendatahub.io/inject-oauth: 'true'
     opendatahub.io/image-display-name: anythingllm Workbench, providing out of the box chatbot, RAG, agents,...
-    notebooks.opendatahub.io/oauth-logout-url: 'https://rhods-dashboard-redhat-ods-applications.{{ include "app_domain" . }}/projects/tinyllama-cpu-demo?notebookLogout=anythingllm'
+    notebooks.opendatahub.io/oauth-logout-url: 'https://rhods-dashboard-redhat-ods-applications.{{ include "app_domain" . }}/projects/{{ .Release.Namespace }}?notebookLogout=anythingllm'
     opendatahub.io/accelerator-name: ''
     openshift.io/description: ''
     openshift.io/display-name: AnythingLLM
@@ -13,7 +13,6 @@ metadata:
     notebooks.opendatahub.io/last-size-selection: Small
     opendatahub.io/username: blueprint@redhat.com
   name: anythingllm
-  namespace: tinyllama-cpu-demo
   labels:
     app: anythingllm
     opendatahub.io/dashboard: 'true'
@@ -33,7 +32,7 @@ spec:
           readinessProbe:
             failureThreshold: 3
             httpGet:
-              path: /notebook/tinyllama-cpu-demo/anythingllm/api
+              path: /notebook/{{ .Release.Namespace }}/anythingllm/api
               port: notebook-port
               scheme: HTTP
             initialDelaySeconds: 10
@@ -44,7 +43,7 @@ spec:
           livenessProbe:
             failureThreshold: 3
             httpGet:
-              path: /notebook/tinyllama-cpu-demo/anythingllm/api
+              path: /notebook/{{ .Release.Namespace }}/anythingllm/api
               port: notebook-port
               scheme: HTTP
             initialDelaySeconds: 10
@@ -57,9 +56,9 @@ spec:
                 --ServerApp.port=8888
                                   --ServerApp.token=''
                                   --ServerApp.password=''
-                                  --ServerApp.base_url=/notebook/tinyllama-cpu-demo/anythingllm
+                                  --ServerApp.base_url=/notebook/{{ .Release.Namespace }}/anythingllm
                                   --ServerApp.quit_button=False
-                                  --ServerApp.tornado_settings={"user":"blueprint@redhat.com","hub_host":"https://rhods-dashboard-redhat-ods-applications.{{ include "app_domain" . }}","hub_prefix":"/projects/tinyllama-cpu-demo"}
+                                  --ServerApp.tornado_settings={"user":"blueprint@redhat.com","hub_host":"https://rhods-dashboard-redhat-ods-applications.{{ include "app_domain" . }}","hub_prefix":"/projects/{{ .Release.Namespace }}"}
             - name: JUPYTER_IMAGE
               value: 'image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/custom-anythingllm:1.7.5'
             - name: SSL_CERT_FILE
@@ -149,7 +148,7 @@ spec:
             - '--email-domain=*'
             - '--skip-provider-button'
             - '--openshift-sar={"verb":"get","resource":"notebooks","resourceAPIGroup":"kubeflow.org","resourceName":"anythingllm","namespace":"$(NAMESPACE)"}'
-            - '--logout-url=https://rhods-dashboard-redhat-ods-applications.{{ include "app_domain" . }}/projects/tinyllama-cpu-demo?notebookLogout=anythingllm'
+            - '--logout-url=https://rhods-dashboard-redhat-ods-applications.{{ include "app_domain" . }}/projects/{{ .Release.Namespace }}?notebookLogout=anythingllm'
       enableServiceLinks: false
       serviceAccountName: anythingllm
       volumes:

@@ -1,13 +1,13 @@
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: tinyllama-cpu-demo
-  labels:
-    kubernetes.io/metadata.name: tinyllama-cpu-demo
-    modelmesh-enabled: 'false'
-    opendatahub.io/dashboard: 'true'
-  annotations:
-    openshift.io/description: 'vLLM CPU Blueprint'
-    openshift.io/display-name: tinyllama-cpu-demo
-    openshift.io/requester: blueprint@redhat.com
+# ---
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: tinyllama-cpu-demo
+#   labels:
+#     kubernetes.io/metadata.name: tinyllama-cpu-demo
+#     modelmesh-enabled: 'false'
+#     opendatahub.io/dashboard: 'true'
+#   annotations:
+#     openshift.io/description: 'vLLM CPU Blueprint'
+#     openshift.io/display-name: tinyllama-cpu-demo
+#     openshift.io/requester: blueprint@redhat.com

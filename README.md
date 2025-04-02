@@ -1,3 +1,3 @@
 # vllm-cpu-blueprint
 
-helm install vllm-cpu . --namespace tinyllama-cpu-demo
+helm install vllm-cpu . --namespace tinyllama-cpu-demo --create-namespace
