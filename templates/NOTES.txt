@@ -1,0 +1,11 @@
+🎉 Your vLLM service has been successfully installed!
+
+You can access it via the following route:
+
+{{- $route := (lookup "route.openshift.io/v1" "Route" .Release.Namespace "anythingllm") }}
+{{- if $route }}
+  URL: https://{{ $route.spec.host }}
+{{- else }}
+  Route not yet available. It may take a few moments to appear here:
+  https://anythingllm-{{ .Release.Namespace }}.{{ include "app_domain" . }}
+{{- end }}

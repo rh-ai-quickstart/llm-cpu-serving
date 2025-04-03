@@ -6,8 +6,6 @@ metadata:
     openshift.io/display-name: tinyllama-1b-cpu
     serving.kserve.io/deploymentMode: RawDeployment
   name: tinyllama-1b-cpu
-  finalizers:
-    - inferenceservice.finalizers
   labels:
     opendatahub.io/dashboard: 'true'
     networking.knative.dev/visibility: cluster-local

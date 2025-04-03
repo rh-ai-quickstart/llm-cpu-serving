@@ -173,4 +173,3 @@ spec:
           secret:
             defaultMode: 420
             secretName: anythingllm-tls
-  readyReplicas: 1
