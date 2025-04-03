@@ -4,12 +4,12 @@ kind: Notebook
 metadata:
   annotations:
     notebooks.opendatahub.io/inject-oauth: 'true'
-    opendatahub.io/image-display-name: anythingllm Workbench, providing out of the box chatbot, RAG, agents,...
-    notebooks.opendatahub.io/oauth-logout-url: 'https://rhods-dashboard-redhat-ods-applications.{{ include "app_domain" . }}/projects/{{ .Release.Namespace }}?notebookLogout=anythingllm'
+    opendatahub.io/image-display-name: AnythingLLM
+    
     opendatahub.io/accelerator-name: ''
     openshift.io/description: ''
     openshift.io/display-name: AnythingLLM
-    notebooks.opendatahub.io/last-image-selection: 'custom-anythingllm:1.7.5'
+    notebooks.opendatahub.io/last-image-selection: '{{ .Release.Namespace }}/custom-anythingllm:1.7.5'
     notebooks.opendatahub.io/last-size-selection: Small
     opendatahub.io/username: blueprint@redhat.com
   name: anythingllm
@@ -58,9 +58,11 @@ spec:
                                   --ServerApp.password=''
                                   --ServerApp.base_url=/notebook/{{ .Release.Namespace }}/anythingllm
                                   --ServerApp.quit_button=False
-                                  --ServerApp.tornado_settings={"user":"blueprint@redhat.com","hub_host":"https://rhods-dashboard-redhat-ods-applications.{{ include "app_domain" . }}","hub_prefix":"/projects/{{ .Release.Namespace }}"}
+                                  
             - name: JUPYTER_IMAGE
-              value: 'image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/custom-anythingllm:1.7.5'
+              # value: 'image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/custom-anythingllm:1.7.5'
+              value: 'quay.io/rh-aiservices-bu/anythingllm-workbench:1.7.5'
+              # value: 'image-registry.openshift-image-registry.svc:5000/{{ .Release.Namespace }}/custom-anythingllm:1.7.5'
             - name: SSL_CERT_FILE
               value: /etc/pki/tls/custom-certs/ca-bundle.crt
             - name: PIPELINES_SSL_SA_CERTS
@@ -88,7 +90,9 @@ spec:
           envFrom:
             - secretRef:
                 name: tinyllama-vllm-cpu
-          image: 'image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/custom-anythingllm:1.7.5'
+          # image: 'image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/custom-anythingllm:1.7.5'
+          image: 'quay.io/rh-aiservices-bu/anythingllm-workbench:1.7.5'
+          # image: 'image-registry.openshift-image-registry.svc:5000/{{ .Release.Namespace }}/custom-anythingllm:1.7.5'
           workingDir: /opt/app-root/src
         - resources:
             limits:
@@ -148,7 +152,7 @@ spec:
             - '--email-domain=*'
             - '--skip-provider-button'
             - '--openshift-sar={"verb":"get","resource":"notebooks","resourceAPIGroup":"kubeflow.org","resourceName":"anythingllm","namespace":"$(NAMESPACE)"}'
-            - '--logout-url=https://rhods-dashboard-redhat-ods-applications.{{ include "app_domain" . }}/projects/{{ .Release.Namespace }}?notebookLogout=anythingllm'
+            
       enableServiceLinks: false
       serviceAccountName: anythingllm
       volumes:

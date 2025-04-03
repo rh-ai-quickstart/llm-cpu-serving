@@ -2,7 +2,7 @@
 
 Install:
 ```
-helm install vllm-cpu . --namespace tinyllama-cpu-demo --create-namespace
+oc apply -f project.yaml && helm install vllm-cpu . --namespace tinyllama-cpu-demo
 ```
 
 Uninstall:
