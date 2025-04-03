@@ -6,32 +6,33 @@ metadata:
     openshift.io/display-name: tinyllama-1b-cpu
     serving.kserve.io/deploymentMode: RawDeployment
   name: tinyllama-1b-cpu
+  finalizers:
+    - inferenceservice.finalizers
   labels:
     opendatahub.io/dashboard: 'true'
 spec:
   predictor:
-    containers:
-      - args:
-          - '--model'
-          - TinyLlama/TinyLlama-1.1B-Chat-v1.0
-          - '--port'
-          - '8080'
-          - '--max-model-len'
-          - '2048'
-        image: 'quay.io/rh-aiservices-bu/vllm-cpu-openai-ubi9:0.3'
-        name: kserve-container
-        resources:
-          limits:
-            cpu: '2'
-            memory: 8Gi
-          requests:
-            cpu: '1'
-            memory: 4Gi
+    maxReplicas: 1
+    minReplicas: 1
+    model:
+      modelFormat:
+        name: vLLM
+      name: ''
+      resources:
+        limits:
+          cpu: '2'
+          memory: 8Gi
+        requests:
+          cpu: '1'
+          memory: 4Gi
+      runtime: vllm-cpu
+      storageUri: 'oci://quay.io/rh-aiservices-bu/tinyllama:1.0'
 ---
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
   name: tinyllama-1b-cpu
+  namespace: tinyllama-cpu-demo
 spec:
   to:
     kind: Service
