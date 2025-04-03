@@ -16,7 +16,7 @@ Install:
 PROJECT="tinyllama-cpu-demo"
 oc new-project ${PROJECT} && \
 helm install vllm-cpu . \
-    --namespace tinyllama-cpu-demo
+    --namespace  ${PROJECT} 
 ```
 
 wait for pods:
@@ -28,5 +28,5 @@ oc get pods -w
 
 Uninstall:
 ```
-helm uninstall vllm-cpu --namespace tinyllama-cpu-demo
+helm uninstall vllm-cpu --namespace ${PROJECT} 
 ```
