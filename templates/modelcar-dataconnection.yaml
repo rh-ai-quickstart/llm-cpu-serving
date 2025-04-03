@@ -1,0 +1,14 @@
+kind: Secret
+apiVersion: v1
+metadata:
+  name: tinyllama-10-on-quayio
+  namespace: tinyllama-cpu-demo
+  labels:
+    opendatahub.io/dashboard: 'true'
+  annotations:
+    opendatahub.io/connection-type-ref: uri-v1
+    openshift.io/description: ''
+    openshift.io/display-name: tinyllama 1.0 on quay.io
+data:
+  URI: b2NpOi8vcXVheS5pby9yaC1haXNlcnZpY2VzLWJ1L3RpbnlsbGFtYToxLjA=
+type: Opaque
