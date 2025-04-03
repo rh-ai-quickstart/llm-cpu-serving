@@ -10,6 +10,7 @@ metadata:
     - inferenceservice.finalizers
   labels:
     opendatahub.io/dashboard: 'true'
+    networking.knative.dev/visibility: cluster-local
 spec:
   predictor:
     maxReplicas: 1
