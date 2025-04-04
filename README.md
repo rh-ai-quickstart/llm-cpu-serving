@@ -7,14 +7,38 @@ git clone https://github.com/RHRolun/vllm-cpu-blueprint.git && \
     cd vllm-cpu-blueprint/  
 ```
 
+
+
+Create the project
+
+```bash
+PROJECT="tinyllama-cpu-demo"
+
+oc apply -f - <<EOF
+apiVersion: project.openshift.io/v1
+kind: Project
+metadata:
+  name: ${PROJECT}
+  labels:
+    kubernetes.io/metadata.name: ${PROJECT}
+    modelmesh-enabled: 'false'
+    opendatahub.io/dashboard: 'true'
+    pod-security.kubernetes.io/audit: restricted
+    pod-security.kubernetes.io/audit-version: latest
+    pod-security.kubernetes.io/warn: restricted
+    pod-security.kubernetes.io/warn-version: latest
+  annotations:
+    openshift.io/description: A project to host TinyLlama
+    openshift.io/display-name: ${PROJECT}
+spec:
+  finalizers:
+    - kubernetes
+EOF
+``` 
+
 Install:
 
 ```
-# donde esta "project.yaml"?
-# oc apply -f project.yaml 
-
-PROJECT="tinyllama-cpu-demo"
-oc new-project ${PROJECT} && \
 helm install vllm-cpu . \
     --namespace  ${PROJECT} 
 ```
@@ -22,7 +46,7 @@ helm install vllm-cpu . \
 wait for pods:
 
 ```
-oc get pods -w
+oc -n ${PROJECT}  get pods -w
 ```
 
 
