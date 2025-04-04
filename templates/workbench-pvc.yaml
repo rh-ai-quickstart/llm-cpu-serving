@@ -6,7 +6,6 @@ metadata:
     openshift.io/description: ''
     openshift.io/display-name: AnythingLLM
   name: anythingllm
-  namespace: tinyllama-cpu-demo
   finalizers:
     - kubernetes.io/pvc-protection
   labels:

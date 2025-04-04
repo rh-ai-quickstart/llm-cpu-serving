@@ -1,2 +1,3 @@
 🎉 Your vLLM service has been successfully installed!
 
+You can access the Workbench through the Data Science project **{{ .Release.Namespace }}**

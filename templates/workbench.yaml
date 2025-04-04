@@ -151,7 +151,7 @@ spec:
             - '--upstream-ca=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt'
             - '--email-domain=*'
             - '--skip-provider-button'
-            - '--openshift-sar={"verb":"get","resource":"notebooks","resourceAPIGroup":"kubeflow.org","resourceName":"anythingllm","namespace":"$(NAMESPACE)"}'
+            - '--openshift-sar={"verb":"get","resource":"notebooks","resourceAPIGroup":"kubeflow.org","resourceName":"anythingllm","namespace":"{{ .Release.Namespace }}"}'
             
       enableServiceLinks: false
       serviceAccountName: anythingllm
