@@ -6,8 +6,16 @@ To see how it's done, jump straight to [installation](#install).
 
 ## Description 
 
+The vLLM CPU Blueprint is a quick-start template for deploying vLLM on CPU-based infrastructure within Red Hat OpenShift. It’s designed for environments where GPUs are not available or necessary, making it ideal for lightweight inference use cases, prototyping, or constrained environments.  
+In this Blueprint, we are utilizing it to easily get an LLM deployed in most environments.
 
-[Section for Descriptions. Essentially, an elevator pitch. Happy to help draft]: # 
+This blueprint includes a Helm chart for deploying:
+
+- An OpenShift AI Project.
+- vLLM with CPU support running an instance of TinyLlama.
+- AnythingLLM (a versitile chat interface) running as a workbench and connected to the vLLM.
+
+Use this project to quickly spin up a minimal vLLM instance and start serving models like TinyLlama on CPU—no GPU required. 🚀
 
 ## Architecture diagrams
 
