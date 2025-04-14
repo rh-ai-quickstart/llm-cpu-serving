@@ -1,8 +1,11 @@
 # vllm-cpu-blueprint
 
-Jump straight to [installation](#install)
+Welcome to the vLLM CPU Blueprint!  
+Use this to quickly get a vLLM up and running in your environment.  
+To see how it's done, jump straight to [installation](#install).
 
 ## Description 
+
 
 [Section for Descriptions. Essentially, an elevator pitch. Happy to help draft]: # 
 
@@ -12,37 +15,32 @@ Jump straight to [installation](#install)
 
 ## References 
 
-[Links to external references, docs, or Arcades (optional)]: # 
+- The runtime is built from [vLLM CPU](https://docs.vllm.ai/en/latest/getting_started/installation/cpu.html)
+- Runtime image is pushed to [quay.io/repository/rh-aiservices-bu/vllm-cpu-openai-ubi9](https://quay.io/repository/rh-aiservices-bu/vllm-cpu-openai-ubi9)
+- Code for Runtime image and deployment can be found on [github.com/rh-aiservices-bu/llm-on-openshift](https://github.com/rh-aiservices-bu/llm-on-openshift/tree/main/serving-runtimes/vllm_runtime)
 
 ## Minimum hardware requirements 
 
 [Suggestions? deployment dependencies?]: #
 
-- no GPU needed! 
+- No GPU needed! 🤖
 - 2 cores 
 - 8 Gi 
 - Storage: 5Gi 
-
-[might need to double check ^^]: # 
-
 
 ## Required software  
 
 - Red Hat OpenShift 
 - Red Hat OpenShift AI 
-
-[anything else used or installed to prepare the environment?]: # 
+- Dependencies for [Single-model server](https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed/2.16/html/installing_and_uninstalling_openshift_ai_self-managed/installing-the-single-model-serving-platform_component-install#configuring-automated-installation-of-kserve_component-install):
+    - Red Hat OpenShift Service Mesh
+    - Red Hat OpenShift Serverless
 
 ## Install
 
 **Please note before you start**
 
-[ie disclaimer section]: #
-
-This example was tested on Red Hat OpenShift 4.16.24 & Red Hat OpenShift AI
-v2.16.2.  
-
-[kserve set up a specific way? Anything else to note?]: #
+This example was tested on Red Hat OpenShift 4.16.24 & Red Hat OpenShift AI v2.16.2.  
 
 Clone:
 
@@ -58,26 +56,7 @@ Create the project
 ```bash
 PROJECT="tinyllama-cpu-demo"
 
-oc apply -f - <<EOF
-apiVersion: project.openshift.io/v1
-kind: Project
-metadata:
-  name: ${PROJECT}
-  labels:
-    kubernetes.io/metadata.name: ${PROJECT}
-    modelmesh-enabled: 'false'
-    opendatahub.io/dashboard: 'true'
-    pod-security.kubernetes.io/audit: restricted
-    pod-security.kubernetes.io/audit-version: latest
-    pod-security.kubernetes.io/warn: restricted
-    pod-security.kubernetes.io/warn-version: latest
-  annotations:
-    openshift.io/description: A project to host TinyLlama
-    openshift.io/display-name: ${PROJECT}
-spec:
-  finalizers:
-    - kubernetes
-EOF
+oc new-project ${PROJECT}
 ``` 
 
 Install:
