@@ -33,7 +33,7 @@ Jump straight to [installation](#install)
 
 [anything else used or installed to prepare the environment?]: # 
 
-## Install {#install}
+## Install
 
 **Please note before you start**
 
