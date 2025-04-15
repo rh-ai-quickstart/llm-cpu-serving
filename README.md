@@ -19,7 +19,7 @@ Use this project to quickly spin up a minimal vLLM instance and start serving mo
 
 ## Architecture diagrams
 
-[Probably optional, good to have if easy to create. Happy to do this too]: # 
+![architecture.png](images/architecture.png)
 
 ## References 
 
