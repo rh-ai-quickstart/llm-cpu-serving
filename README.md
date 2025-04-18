@@ -44,6 +44,10 @@ Use this project to quickly spin up a minimal vLLM instance and start serving mo
     - Red Hat OpenShift Service Mesh
     - Red Hat OpenShift Serverless
 
+## Required permissions
+
+- Standard user. No elevated cluster permissions required 
+
 ## Install
 
 **Please note before you start**
