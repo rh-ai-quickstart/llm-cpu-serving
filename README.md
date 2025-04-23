@@ -1,12 +1,12 @@
-# vllm-cpu-kickstart
+# vllm-cpu
 
-Welcome to the vLLM CPU Kickstart!
+Welcome to the vLLM CPU kickstart!
 Use this to quickly get a vLLM up and running in your environment.  
 To see how it's done, jump straight to [installation](#install).
 
 ## Description 
 
-The vLLM CPU Kickstart is a quick-start template for deploying vLLM on CPU-based infrastructure within Red Hat OpenShift. It’s designed for environments where GPUs are not available or necessary, making it ideal for lightweight inference use cases, prototyping, or constrained environments.  
+The vLLM CPU kickstart is a quick-start template for deploying vLLM on CPU-based infrastructure within Red Hat OpenShift. It’s designed for environments where GPUs are not available or necessary, making it ideal for lightweight inference use cases, prototyping, or constrained environments.  
 In this Kickstart, we are utilizing it to easily get an LLM deployed in most environments.
 
 This kickstart includes a Helm chart for deploying:
