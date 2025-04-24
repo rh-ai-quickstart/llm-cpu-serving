@@ -57,7 +57,7 @@ This example was tested on Red Hat OpenShift 4.16.24 & Red Hat OpenShift AI v2.1
 Clone:
 
 ```
-git clone https://github.com/RHRolun/vllm-cpu.git && \
+git clone https://github.com/rh-ai-kickstart/vllm-cpu.git && \
     cd vllm-cpu/  
 ```
 
