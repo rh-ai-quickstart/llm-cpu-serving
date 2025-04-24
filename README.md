@@ -54,7 +54,7 @@ Use this project to quickly spin up a minimal vLLM instance and start serving mo
 
 This example was tested on Red Hat OpenShift 4.16.24 & Red Hat OpenShift AI v2.16.2.  
 
-Clone:
+### Clone
 
 ```
 git clone https://github.com/RHRolun/vllm-cpu.git && \
@@ -63,7 +63,7 @@ git clone https://github.com/RHRolun/vllm-cpu.git && \
 
 
 
-Create the project
+### Create the project
 
 ```bash
 PROJECT="tinyllama-cpu-demo"
@@ -71,21 +71,43 @@ PROJECT="tinyllama-cpu-demo"
 oc new-project ${PROJECT}
 ``` 
 
-Install:
+### Install with Helm
 
 ```
 helm install vllm-cpu . \
     --namespace  ${PROJECT} 
 ```
 
-wait for pods:
+### Wait for pods
 
 ```
 oc -n ${PROJECT}  get pods -w
 ```
 
+```
+(Output)
+NAME                                         READY   STATUS    RESTARTS   AGE
+anythingllm-0                                2/2     Running   0          5m
+tinyllama-1b-cpu-predictor-df76b56d6-fw8fp   2/2     Running   0          5m
+```
 
-Uninstall:
+### Test
+
+```bash
+oc get routes rhods-dashboard -n redhat-ods-applications
+```
+
+![OpenShift AI Projects](images/rhoai-1.png)
+
+![OpenShift AI Projects](images/rhoai-2.png)
+
+Create Workspace
+
+![AnythingLLM](images/anythingllm-1.png)
+
+
+
+## Uninstall
 ```
 helm uninstall vllm-cpu --namespace ${PROJECT} 
 ```
