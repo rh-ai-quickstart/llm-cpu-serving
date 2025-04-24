@@ -11,7 +11,7 @@ metadata:
     openshift.io/display-name: AnythingLLM
     notebooks.opendatahub.io/last-image-selection: '{{ .Release.Namespace }}/custom-anythingllm:1.7.5'
     notebooks.opendatahub.io/last-size-selection: Small
-    opendatahub.io/username: blueprint@redhat.com
+    opendatahub.io/username: kickstart@redhat.com
   name: anythingllm
   labels:
     app: anythingllm

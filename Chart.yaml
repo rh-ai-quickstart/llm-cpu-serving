@@ -1,4 +1,4 @@
 apiVersion: v2
-description: A blueprint for TinyLlama and AnythingLLM
-name: vllm-cpu-tinyllama
+description: A kickstart for TinyLlama and AnythingLLM
+name: vllm-cpu
 version: 1.0.0
