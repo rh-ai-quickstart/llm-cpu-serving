@@ -2,7 +2,6 @@ kind: Secret
 apiVersion: v1
 metadata:
   name: tinyllama-10-on-quayio
-  namespace: tinyllama-cpu-demo
   labels:
     opendatahub.io/dashboard: 'true'
   annotations:
