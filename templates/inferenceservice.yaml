@@ -31,7 +31,6 @@ kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
   name: tinyllama-1b-cpu
-  namespace: tinyllama-cpu-demo
 spec:
   to:
     kind: Service
