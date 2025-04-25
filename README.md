@@ -93,16 +93,18 @@ tinyllama-1b-cpu-predictor-df76b56d6-fw8fp   2/2     Running   0          5m
 
 ### Test
 
+You can get the OpenShift AI Dashboard URL by:
 ```bash
 oc get routes rhods-dashboard -n redhat-ods-applications
 ```
 
+Once inside the dashboard, naviaget to Data Science Projects -> tinyllama-cpu-demo (or what you called your ${PROJECT} if you changed from default).
 ![OpenShift AI Projects](images/rhoai-1.png)
 
+Inside the project you can see Workbenches, open up the one for AnythingLLM.
 ![OpenShift AI Projects](images/rhoai-2.png)
 
-Create Workspace
-
+Finally, you can create a new Workspace in AnythingLLM and start chatting with your model! :)
 ![AnythingLLM](images/anythingllm-1.png)
 
 
