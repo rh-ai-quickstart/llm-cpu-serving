@@ -74,7 +74,7 @@ oc new-project ${PROJECT}
 ### Install with Helm
 
 ```
-helm install vllm-cpu . \
+helm install vllm-cpu helm/ \
     --namespace  ${PROJECT} 
 ```
 
