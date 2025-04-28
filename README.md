@@ -17,6 +17,13 @@ This kickstart includes a Helm chart for deploying:
 
 Use this project to quickly spin up a minimal vLLM instance and start serving models like TinyLlama on CPU—no GPU required. 🚀
 
+## See it in action
+
+Red Hat uses Arcade software to create interactive demos. Check out 
+[Kickstart with TinyLlama on CPU](https://interact.redhat.com/share/zsT3j9cgPt9yyPchb7EJ)
+ to see it in action.
+
+
 ## Architecture diagrams
 
 ![architecture.png](images/architecture.png)
