@@ -39,7 +39,7 @@ Red Hat uses Arcade software to create interactive demos. Check out
 [Suggestions? deployment dependencies?]: #
 
 - No GPU needed! 🤖
-- 2 cores 
+- 8 cores 
 - 8 Gi 
 - Storage: 5Gi 
 

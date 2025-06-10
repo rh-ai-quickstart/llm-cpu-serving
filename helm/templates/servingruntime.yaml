@@ -22,6 +22,8 @@ spec:
         - "8080"
         - --max-model-len
         - "2048"
+        - '--served-model-name'
+        - tinyllama
       image: quay.io/rh-aiservices-bu/vllm-cpu-openai-ubi9:0.3
       name: kserve-container
       ports:
