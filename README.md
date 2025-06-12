@@ -34,13 +34,18 @@ Red Hat uses Arcade software to create interactive demos. Check out
 - Runtime image is pushed to [quay.io/repository/rh-aiservices-bu/vllm-cpu-openai-ubi9](https://quay.io/repository/rh-aiservices-bu/vllm-cpu-openai-ubi9)
 - Code for Runtime image and deployment can be found on [github.com/rh-aiservices-bu/llm-on-openshift](https://github.com/rh-aiservices-bu/llm-on-openshift/tree/main/serving-runtimes/vllm_runtime)
 
-## Minimum hardware requirements 
-
-[Suggestions? deployment dependencies?]: #
+## Recommended/Default hardware requirements 
 
 - No GPU needed! 🤖
 - 8 cores 
 - 8 Gi 
+- Storage: 5Gi 
+
+## Minimum hardware requirements 
+
+- No GPU needed! 🤖
+- 2 cores 
+- 4 Gi 
 - Storage: 5Gi 
 
 ## Required software  
