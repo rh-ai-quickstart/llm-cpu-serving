@@ -4,7 +4,7 @@ Welcome to the vLLM CPU kickstart!
 Use this to quickly get a vLLM up and running in your environment.  
 To see how it's done, jump straight to [installation](#install).
 
-## Description 
+## Detailed description 
 
 The vLLM CPU kickstart is a quick-start template for deploying vLLM on CPU-based infrastructure within Red Hat OpenShift. It’s designed for environments where GPUs are not available or necessary, making it ideal for lightweight inference use cases, prototyping, or constrained environments.  
 In this Kickstart, we are utilizing it to easily get an LLM deployed in most environments.
@@ -17,38 +17,40 @@ This kickstart includes a Helm chart for deploying:
 
 Use this project to quickly spin up a minimal vLLM instance and start serving models like TinyLlama on CPU—no GPU required. 🚀
 
-## See it in action
+### See it in action
 
 Red Hat uses Arcade software to create interactive demos. Check out 
 [Kickstart with TinyLlama on CPU](https://interact.redhat.com/share/zsT3j9cgPt9yyPchb7EJ)
  to see it in action.
 
 
-## Architecture diagrams
+### Architecture diagrams
 
 ![architecture.png](images/architecture.png)
 
-## References 
+### References 
 
 - The runtime is built from [vLLM CPU](https://docs.vllm.ai/en/latest/getting_started/installation/cpu.html)
 - Runtime image is pushed to [quay.io/repository/rh-aiservices-bu/vllm-cpu-openai-ubi9](https://quay.io/repository/rh-aiservices-bu/vllm-cpu-openai-ubi9)
 - Code for Runtime image and deployment can be found on [github.com/rh-aiservices-bu/llm-on-openshift](https://github.com/rh-aiservices-bu/llm-on-openshift/tree/main/serving-runtimes/vllm_runtime)
 
-## Recommended hardware requirements 
+## Requirements 
+
+### Recommended hardware requirements 
 
 - No GPU needed! 🤖
 - 8 cores 
 - 8 Gi 
 - Storage: 5Gi 
 
-## Minimum hardware requirements 
+### Minimum hardware requirements 
 
 - No GPU needed! 🤖
 - 2 cores 
 - 4 Gi 
 - Storage: 5Gi 
 
-## Required software  
+### Required software  
 
 - Red Hat OpenShift 
 - Red Hat OpenShift AI 
@@ -56,7 +58,7 @@ Red Hat uses Arcade software to create interactive demos. Check out
     - Red Hat OpenShift Service Mesh
     - Red Hat OpenShift Serverless
 
-## Required permissions
+### Required permissions
 
 - Standard user. No elevated cluster permissions required 
 
