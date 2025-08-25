@@ -1,4 +1,4 @@
 apiVersion: v2
-description: A kickstart for TinyLlama and AnythingLLM
+description: A quickstart for TinyLlama and AnythingLLM
 name: vllm-cpu
 version: 1.0.0

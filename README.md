@@ -1,15 +1,15 @@
 # vllm-cpu
 
-Welcome to the vLLM CPU kickstart!
+Welcome to the vLLM CPU quickstart!
 Use this to quickly get a vLLM up and running in your environment.  
 To see how it's done, jump straight to [installation](#install).
 
 ## Detailed description 
 
-The vLLM CPU kickstart is a quick-start template for deploying vLLM on CPU-based infrastructure within Red Hat OpenShift. It’s designed for environments where GPUs are not available or necessary, making it ideal for lightweight inference use cases, prototyping, or constrained environments.  
-In this Kickstart, we are utilizing it to easily get an LLM deployed in most environments.
+The vLLM CPU quickstart is a quick-start template for deploying vLLM on CPU-based infrastructure within Red Hat OpenShift. It’s designed for environments where GPUs are not available or necessary, making it ideal for lightweight inference use cases, prototyping, or constrained environments.  
+In this Quickstart, we are utilizing it to easily get an LLM deployed in most environments.
 
-This kickstart includes a Helm chart for deploying:
+This quickstart includes a Helm chart for deploying:
 
 - An OpenShift AI Project.
 - vLLM with CPU support running an instance of TinyLlama.
@@ -20,7 +20,7 @@ Use this project to quickly spin up a minimal vLLM instance and start serving mo
 ### See it in action
 
 Red Hat uses Arcade software to create interactive demos. Check out 
-[Kickstart with TinyLlama on CPU](https://interact.redhat.com/share/zsT3j9cgPt9yyPchb7EJ)
+[Quickstart with TinyLlama on CPU](https://interact.redhat.com/share/zsT3j9cgPt9yyPchb7EJ)
  to see it in action.
 
 
@@ -71,7 +71,7 @@ This example was tested on Red Hat OpenShift 4.16.24 & Red Hat OpenShift AI v2.1
 ### Clone
 
 ```
-git clone https://github.com/rh-ai-kickstart/vllm-cpu.git && \
+git clone https://github.com/rh-ai-quickstart/vllm-cpu.git && \
     cd vllm-cpu/  
 ```
 
