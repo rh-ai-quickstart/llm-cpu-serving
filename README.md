@@ -75,7 +75,7 @@ This example was tested on Red Hat OpenShift 4.16.24 & Red Hat OpenShift AI v2.1
 
 ```
 git clone https://github.com/rh-ai-quickstart/llm-cpu-serving.git && \
-    cd vllm-cpu/  
+    cd llm-cpu-serving/  
 ```
 
 
@@ -91,7 +91,7 @@ oc new-project ${PROJECT}
 ### Install with Helm
 
 ```
-helm install vllm-cpu helm/ \
+helm install llm-cpu-serving helm/ \
     --namespace  ${PROJECT} 
 ```
 
