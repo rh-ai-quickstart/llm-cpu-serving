@@ -41,7 +41,10 @@ Red Hat uses Arcade software to create interactive demos. Check out
 - No GPU needed! 🤖
 - 8 cores 
 - 8 Gi 
-- Storage: 5Gi 
+- Storage: 5Gi
+
+Note: This version is compiled for Intel CPU's (preferrably with AWX512 enabled to be able to run compressed models as well, but optional).  
+Here's an example machine from AWS that works well: [https://instances.vantage.sh/aws/ec2/m6i.4xlarge](https://instances.vantage.sh/aws/ec2/m6i.4xlarge)
 
 ### Minimum hardware requirements 
 
