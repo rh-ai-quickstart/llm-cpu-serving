@@ -78,7 +78,12 @@ git clone https://github.com/rh-ai-quickstart/llm-cpu-serving.git && \
     cd llm-cpu-serving/  
 ```
 
+### (Optional) Update storage class name
 
+If needed, update storage class name in `helm/values.yaml`.
+```
+storageClassName: gp3-csi
+```
 
 ### Create the project
 
