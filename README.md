@@ -133,5 +133,5 @@ Finally, you can create a new Workspace in AnythingLLM and start chatting with y
 
 ## Uninstall
 ```
-helm uninstall vllm-cpu --namespace ${PROJECT} 
+helm uninstall llm-cpu-serving --namespace ${PROJECT} 
 ```
