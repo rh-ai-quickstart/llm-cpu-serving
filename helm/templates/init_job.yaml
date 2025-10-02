@@ -63,9 +63,8 @@ spec:
           echo "Using workspace slug: ${WS_SLUG}"
 
           # Set the system prompt using the workspace slug
-          SYSTEM_PROMPT={{ .Values.aiLifecoach.workspace.systemPrompt | toJson }}
           curl -s -X POST "${BASE}/workspace/${WS_SLUG}/update" -H "${AUTH}" -H "Content-Type: application/json" \
-            -d "{\"openAiPrompt\": ${SYSTEM_PROMPT}}" >/dev/null || true
+            -d {{ printf `{"openAiPrompt": %s}` (.Values.aiLifecoach.workspace.systemPrompt | toJson) | toJson }} >/dev/null || true
 
           echo "Upload document via link to our workspace ${WS_NAME} (slug: ${WS_SLUG})"
           for URL in ${SEED_URL}; do

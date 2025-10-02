@@ -23,10 +23,10 @@ spec:
       containers:
         - resources:
             limits:
-              cpu: '2'
+              cpu: '3'
               memory: 8Gi
             requests:
-              cpu: '1'
+              cpu: '2'
               memory: 8Gi
           readinessProbe:
             failureThreshold: 3
