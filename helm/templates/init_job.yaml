@@ -72,6 +72,6 @@ spec:
           for URL in ${SEED_URL}; do
             UL_RESP="$(curl -s -X POST "${BASE}/document/upload-link" \
                       -H "${AUTH}" -H "Content-Type: application/json" \
-                      -d "{\"link\":\"${URL}\", \"addToWorkspaces\":\"${WS_NAME}\"}")"
+                      -d "{\"link\":\"${URL}\", \"addToWorkspaces\":\"${WS_SLUG}\"}")"
             echo "upload-link response (truncated): $(echo "$UL_RESP" | head -c 200)"
           done
