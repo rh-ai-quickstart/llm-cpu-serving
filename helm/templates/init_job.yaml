@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: anythingllm-seed-final
+  name: anythingllm-seed
 spec:
   backoffLimit: 0
   template:
@@ -22,7 +22,7 @@ spec:
             fieldRef:
               fieldPath: metadata.namespace
         - name: WORKSPACE_NAME
-          value: "test-4"
+          value: "Warren Buffet"
         - name: SEED_URL
           value: "https://www.berkshirehathaway.com/letters/letters.html https://www.berkshirehathaway.com/letters/letters.html"
         args:
@@ -33,7 +33,22 @@ spec:
           AUTH="Authorization: Bearer ${ANYTHINGLLM_API_KEY}"
           WS_NAME="${WORKSPACE_NAME}"
 
-          echo "Health: $(curl -s -o /dev/null -w '%{http_code}' "${BASE}/health" || true)"
+          echo "Waiting for AnythingLLM to be ready..."
+          
+          # Health check using system endpoint
+          ATTEMPT=1
+          while true; do
+            HEALTH_CODE=$(curl -s -o /dev/null -w '%{http_code}' -H "${AUTH}" "${BASE}/system" 2>/dev/null || echo "000")
+            if [ "$HEALTH_CODE" = "200" ]; then
+              echo "✅ AnythingLLM is ready! (attempt $ATTEMPT)"
+              break
+            fi
+            echo "System check: $HEALTH_CODE (attempt $ATTEMPT)"
+            ATTEMPT=$((ATTEMPT + 1))
+            sleep 10
+          done
+          
+          echo "System endpoint: $(curl -s -o /dev/null -w '%{http_code}' -H "${AUTH}" "${BASE}/system" || true)"
 
           echo "Create workspace (idempotent): ${WS_NAME}"
           CREATE_RESP="$(curl -s -X POST "${BASE}/workspace/new" -H "${AUTH}" -H "Content-Type: application/json" -d "{\"name\":\"${WS_NAME}\"}" || true)"

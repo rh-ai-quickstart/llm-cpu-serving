@@ -13,7 +13,7 @@ This quickstart includes a Helm chart for deploying:
 
 - An OpenShift AI Project.
 - vLLM with CPU support running an instance of TinyLlama.
-- AnythingLLM (a versitile chat interface) running as a workbench and connected to the vLLM.
+- AnythingLLM (a versatile chat interface) running as a workbench and connected to the vLLM.
 
 Use this project to quickly spin up a minimal vLLM instance and start serving models like TinyLlama on CPU—no GPU required. 🚀
 
@@ -43,7 +43,7 @@ Red Hat uses Arcade software to create interactive demos. Check out
 - 8 Gi 
 - Storage: 5Gi
 
-Note: This version is compiled for Intel CPU's (preferrably with AWX512 enabled to be able to run compressed models as well, but optional).  
+Note: This version is compiled for Intel CPU's (preferably with AWX512 enabled to be able to run compressed models as well, but optional).  
 Here's an example machine from AWS that works well: [https://instances.vantage.sh/aws/ec2/m6i.4xlarge](https://instances.vantage.sh/aws/ec2/m6i.4xlarge)
 
 ### Minimum hardware requirements 

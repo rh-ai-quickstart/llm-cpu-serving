@@ -1,7 +1,7 @@
 kind: Secret
 apiVersion: v1
 metadata:
-  name: tinyllama-vllm-cpu
+  name: anythingllm-api
   labels:
     opendatahub.io/dashboard: 'true'
   annotations:
