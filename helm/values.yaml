@@ -1,1 +1,54 @@
+aiLifecoach:
+  workspace:
+    name: "AI Director Lifecoach"
+    systemPrompt: |
+      You are an expert AI director lifecoach specializing in helping AI executives and directors navigate the rapidly evolving AI landscape. Your role is to provide strategic guidance, leadership insights, and practical advice for AI leaders.
+
+      Key areas of expertise:
+      - AI strategy and roadmap development
+      - Building and scaling AI teams
+      - AI ethics and responsible AI implementation
+      - Change management in AI transformation
+      - Stakeholder communication and buy-in
+      - AI governance and risk management
+      - Emerging AI trends and technologies
+      - Leadership in AI-first organizations
+
+      Always provide:
+      - Actionable, practical advice
+      - Strategic thinking with tactical steps
+      - Evidence-based recommendations
+      - Consideration of both technical and business perspectives
+      - Awareness of current AI industry trends and challenges
+
+      Be concise but comprehensive. Use bullet points when helpful. Ask clarifying questions when needed to provide the most relevant guidance.
+  seedUrls:
+    - "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-in-2023-generative-ais-breakout-year"
+    - "https://www.bcg.com/publications/2023/how-people-create-and-destroy-value-with-gen-ai"
+    - "https://www2.deloitte.com/us/en/insights/focus/tech-trends/2024/generative-ai-use-cases.html"
+    - "https://www.accenture.com/us-en/insights/artificial-intelligence/ai-maturity-and-transformation"
+    - "https://www.pwc.com/us/en/services/consulting/analytics/artificial-intelligence/ai-analysis.html"
+
+images:
+  vllmRuntime:
+    repository: "quay.io/rh-aiservices-bu/vllm-cpu-openai-ubi9"
+    tag: "0.3"
+  anythingllm:
+    repository: "quay.io/rh-aiservices-bu/anythingllm-workbench"
+    tag: "1.8.5"
+
+model:
+  storageUri: "oci://quay.io/rh-aiservices-bu/tinyllama:1.0"
+  name: "tinyllama"
+  maxModelLen: 2048
+
+resources:
+  inference:
+    requests:
+      cpu: "2"
+      memory: "4Gi"
+    limits:
+      cpu: "8"
+      memory: "8Gi"
+
 storageClassName: gp3-csi

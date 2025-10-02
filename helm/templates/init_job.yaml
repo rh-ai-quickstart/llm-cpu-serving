@@ -22,9 +22,9 @@ spec:
             fieldRef:
               fieldPath: metadata.namespace
         - name: WORKSPACE_NAME
-          value: "Warren Buffet"
+          value: {{ .Values.aiLifecoach.workspace.name | quote }}
         - name: SEED_URL
-          value: "https://www.berkshirehathaway.com/letters/letters.html https://www.berkshirehathaway.com/letters/letters.html"
+          value: {{ join " " .Values.aiLifecoach.seedUrls | quote }}
         args:
         - |
           set -eu
@@ -63,10 +63,9 @@ spec:
           echo "Using workspace slug: ${WS_SLUG}"
 
           # Set the system prompt using the workspace slug
+          SYSTEM_PROMPT={{ .Values.aiLifecoach.workspace.systemPrompt | toJson }}
           curl -s -X POST "${BASE}/workspace/${WS_SLUG}/update" -H "${AUTH}" -H "Content-Type: application/json" \
-            -d '{
-                  "openAiPrompt":"You are a concise assistant. Prefer bullet answers."
-                }' >/dev/null || true
+            -d "{\"openAiPrompt\": ${SYSTEM_PROMPT}}" >/dev/null || true
 
           echo "Upload document via link to our workspace ${WS_NAME} (slug: ${WS_SLUG})"
           for URL in ${SEED_URL}; do

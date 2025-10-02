@@ -59,7 +59,7 @@ spec:
                                   --ServerApp.quit_button=False
                                   
             - name: JUPYTER_IMAGE
-              value: 'quay.io/rh-aiservices-bu/anythingllm-workbench:1.8.5'
+              value: "{{ .Values.images.anythingllm.repository }}:{{ .Values.images.anythingllm.tag }}"
             - name: SSL_CERT_FILE
               value: /etc/pki/tls/custom-certs/ca-bundle.crt
             - name: PIPELINES_SSL_SA_CERTS
@@ -87,7 +87,7 @@ spec:
           envFrom:
             - secretRef:
                 name: tinyllama-vllm-cpu
-          image: 'quay.io/rh-aiservices-bu/anythingllm-workbench:1.8.5'
+          image: "{{ .Values.images.anythingllm.repository }}:{{ .Values.images.anythingllm.tag }}"
           workingDir: /opt/app-root/src
         - resources:
             limits:
