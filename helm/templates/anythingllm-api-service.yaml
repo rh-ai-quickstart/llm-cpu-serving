@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: anythingllm-api-internal
+  labels:
+    app: anythingllm
+spec:
+  selector:
+    app: anythingllm
+  ports:
+  - name: api
+    port: 3001
+    targetPort: 3001
+    protocol: TCP
+  type: ClusterIP

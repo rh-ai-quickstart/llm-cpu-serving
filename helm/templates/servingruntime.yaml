@@ -21,10 +21,10 @@ spec:
         - --port
         - "8080"
         - --max-model-len
-        - "2048"
+        - {{ .Values.model.maxModelLen | quote }}
         - '--served-model-name'
-        - tinyllama
-      image: quay.io/rh-aiservices-bu/vllm-cpu-openai-ubi9:0.3
+        - {{ .Values.model.name }}
+      image: {{ .Values.images.vllmRuntime.repository }}:{{ .Values.images.vllmRuntime.tag }}
       name: kserve-container
       ports:
         - containerPort: 8080

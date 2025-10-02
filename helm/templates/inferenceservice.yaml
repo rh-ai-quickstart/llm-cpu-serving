@@ -19,13 +19,13 @@ spec:
       name: ''
       resources:
         limits:
-          cpu: '8'
-          memory: 8Gi
+          cpu: {{ .Values.resources.inference.limits.cpu | quote }}
+          memory: {{ .Values.resources.inference.limits.memory | quote }}
         requests:
-          cpu: '2'
-          memory: 4Gi
+          cpu: {{ .Values.resources.inference.requests.cpu | quote }}
+          memory: {{ .Values.resources.inference.requests.memory | quote }}
       runtime: vllm-cpu
-      storageUri: 'oci://quay.io/rh-aiservices-bu/tinyllama:1.0'
+      storageUri: {{ .Values.model.storageUri | quote }}
 ---
 kind: Route
 apiVersion: route.openshift.io/v1

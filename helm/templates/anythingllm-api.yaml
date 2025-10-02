@@ -1,0 +1,13 @@
+kind: Secret
+apiVersion: v1
+metadata:
+  name: anythingllm-api
+  labels:
+    opendatahub.io/dashboard: 'true'
+  annotations:
+    opendatahub.io/connection-type-ref: anythingllm-generic-openai
+    openshift.io/description: Connect to a tinyllama model
+    openshift.io/display-name: vLLM CPU TinyLlama
+data:
+  key: c2stYXV0b21hdGlvbi13b3Jrc3BhY2Utc2V0dXA=
+type: Opaque
