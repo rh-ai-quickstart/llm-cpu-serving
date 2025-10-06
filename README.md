@@ -26,7 +26,7 @@ Red Hat uses Arcade software to create interactive demos. Check out
 
 ### Architecture diagrams
 
-![architecture.png](images/architecture.png)
+![architecture.png](docs/images/architecture.png)
 
 ### References 
 
@@ -121,13 +121,13 @@ oc get routes rhods-dashboard -n redhat-ods-applications
 ```
 
 Once inside the dashboard, navigate to Data Science Projects -> tinyllama-cpu-demo (or what you called your ${PROJECT} if you changed from default).
-![OpenShift AI Projects](images/rhoai-1.png)
+![OpenShift AI Projects](docs/images/rhoai-1.png)
 
 Inside the project you can see Workbenches, open up the one for AnythingLLM.
-![OpenShift AI Projects](images/rhoai-2.png)
+![OpenShift AI Projects](docs/images/rhoai-2.png)
 
 Finally, you can create a new Workspace in AnythingLLM and start chatting with your model! :)
-![AnythingLLM](images/anythingllm-1.png)
+![AnythingLLM](docs/images/anythingllm-1.png)
 
 
 
