@@ -90,7 +90,7 @@ git clone https://github.com/rh-ai-quickstart/llm-cpu-serving.git && \
 ### Create the project
 
 ```bash
-PROJECT="tinyllama-cpu-demo"
+PROJECT="ai-lifecoach"
 
 oc new-project ${PROJECT}
 ``` 
@@ -98,8 +98,7 @@ oc new-project ${PROJECT}
 ### Install with Helm
 
 ```
-helm install llm-cpu-serving helm/ \
-    --namespace  ${PROJECT} 
+helm install ${PROJECT} helm/ --namespace  ${PROJECT} 
 ```
 
 ### Wait for pods
@@ -133,9 +132,9 @@ Finally, you can create a new Workspace in AnythingLLM and start chatting with y
 
 
 
-## Uninstall
+### Delete
 ```
-helm uninstall llm-cpu-serving --namespace ${PROJECT} 
+helm uninstall ${PROJECT} --namespace ${PROJECT} 
 ```
 
 
