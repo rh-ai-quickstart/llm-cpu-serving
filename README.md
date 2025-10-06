@@ -146,8 +146,8 @@ helm uninstall llm-cpu-serving --namespace ${PROJECT}
 - Code for Runtime image and deployment can be found on [github.com/rh-aiservices-bu/llm-on-openshift](https://github.com/rh-aiservices-bu/llm-on-openshift/tree/main/serving-runtimes/vllm_runtime)
 
 
-## Technical details
-
-
 ## Tags
 
+* **Industry:** Cross-industry
+* **Product:** OpenShift AI 
+* **Use case:** Productivity
