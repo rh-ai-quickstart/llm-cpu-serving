@@ -1,0 +1,75 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: anythingllm-seed
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: seeder
+        image: quay.io/curl/curl
+        command: ["/bin/sh","-lc"]
+        env:
+        - name: ANYTHINGLLM_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: anythingllm-api
+              key: key
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: WORKSPACE_NAME
+          value: {{ .Values.aiLifecoach.workspace.name | quote }}
+        - name: SEED_URL
+          value: {{ join " " .Values.aiLifecoach.seedUrls | quote }}
+        args:
+        - |
+          set -eu
+          SVC="anythingllm-api-internal.${NAMESPACE}.svc.cluster.local:3001"
+          BASE="http://${SVC}/api/v1"
+          AUTH="Authorization: Bearer ${ANYTHINGLLM_API_KEY}"
+          WS_NAME="${WORKSPACE_NAME}"
+
+          echo "Waiting for AnythingLLM to be ready..."
+          
+          # Health check using system endpoint
+          ATTEMPT=1
+          while true; do
+            HEALTH_CODE=$(curl -s -o /dev/null -w '%{http_code}' -H "${AUTH}" "${BASE}/system" 2>/dev/null || echo "000")
+            if [ "$HEALTH_CODE" = "200" ]; then
+              echo "✅ AnythingLLM is ready! (attempt $ATTEMPT)"
+              break
+            fi
+            echo "System check: $HEALTH_CODE (attempt $ATTEMPT)"
+            ATTEMPT=$((ATTEMPT + 1))
+            sleep 10
+          done
+          
+          echo "System endpoint: $(curl -s -o /dev/null -w '%{http_code}' -H "${AUTH}" "${BASE}/system" || true)"
+
+          echo "Create workspace (idempotent): ${WS_NAME}"
+          CREATE_RESP="$(curl -s -X POST "${BASE}/workspace/new" -H "${AUTH}" -H "Content-Type: application/json" -d "{\"name\":\"${WS_NAME}\"}" || true)"
+
+          # Try to grab slug from the create response; else look it up
+          WS_SLUG="$(printf '%s' "$CREATE_RESP" | sed -n 's/.*"slug":"\([^"]*\)".*/\1/p' | head -n1 || true)"
+          if [ -z "${WS_SLUG}" ]; then
+            WS_SLUG="$(curl -s "${BASE}/workspaces" -H "${AUTH}" \
+              | awk -v n="$WS_NAME" 'BEGIN{RS="[{}]"} /"name":"[^"]+"/{ if($0 ~ "\"name\":\""n"\""){ if(match($0,/\"slug\":\"[^"]+\"/)){ s=substr($0,RSTART+8,RLENGTH-9); print s; exit }}}')"
+          fi
+          [ -n "${WS_SLUG}" ] || { echo "Could not determine workspace slug for ${WS_NAME}"; exit 1; }
+          echo "Using workspace slug: ${WS_SLUG}"
+
+          # Set the system prompt using the workspace slug
+          curl -s -X POST "${BASE}/workspace/${WS_SLUG}/update" -H "${AUTH}" -H "Content-Type: application/json" \
+            -d {{ printf `{"openAiPrompt": %s}` (.Values.aiLifecoach.workspace.systemPrompt | toJson) | toJson }} >/dev/null || true
+
+          echo "Upload document via link to our workspace ${WS_NAME} (slug: ${WS_SLUG})"
+          for URL in ${SEED_URL}; do
+            UL_RESP="$(curl -s -X POST "${BASE}/document/upload-link" \
+                      -H "${AUTH}" -H "Content-Type: application/json" \
+                      -d "{\"link\":\"${URL}\", \"addToWorkspaces\":\"${WS_SLUG}\"}")"
+            echo "upload-link response (truncated): $(echo "$UL_RESP" | head -c 200)"
+          done

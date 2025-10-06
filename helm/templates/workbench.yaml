@@ -5,11 +5,10 @@ metadata:
   annotations:
     notebooks.opendatahub.io/inject-oauth: 'true'
     opendatahub.io/image-display-name: AnythingLLM
-    
     opendatahub.io/accelerator-name: ''
     openshift.io/description: ''
     openshift.io/display-name: AnythingLLM
-    notebooks.opendatahub.io/last-image-selection: '{{ .Release.Namespace }}/custom-anythingllm:1.7.5'
+    notebooks.opendatahub.io/last-image-selection: '{{ .Release.Namespace }}/custom-anythingllm:1.8.5'
     notebooks.opendatahub.io/last-size-selection: Small
     opendatahub.io/username: quickstart@redhat.com
   name: anythingllm
@@ -24,10 +23,10 @@ spec:
       containers:
         - resources:
             limits:
-              cpu: '2'
+              cpu: '3'
               memory: 8Gi
             requests:
-              cpu: '1'
+              cpu: '2'
               memory: 8Gi
           readinessProbe:
             failureThreshold: 3
@@ -60,9 +59,7 @@ spec:
                                   --ServerApp.quit_button=False
                                   
             - name: JUPYTER_IMAGE
-              # value: 'image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/custom-anythingllm:1.7.5'
-              value: 'quay.io/rh-aiservices-bu/anythingllm-workbench:1.7.5'
-              # value: 'image-registry.openshift-image-registry.svc:5000/{{ .Release.Namespace }}/custom-anythingllm:1.7.5'
+              value: "{{ .Values.images.anythingllm.repository }}:{{ .Values.images.anythingllm.tag }}"
             - name: SSL_CERT_FILE
               value: /etc/pki/tls/custom-certs/ca-bundle.crt
             - name: PIPELINES_SSL_SA_CERTS
@@ -90,9 +87,7 @@ spec:
           envFrom:
             - secretRef:
                 name: tinyllama-vllm-cpu
-          # image: 'image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/custom-anythingllm:1.7.5'
-          image: 'quay.io/rh-aiservices-bu/anythingllm-workbench:1.7.5'
-          # image: 'image-registry.openshift-image-registry.svc:5000/{{ .Release.Namespace }}/custom-anythingllm:1.7.5'
+          image: "{{ .Values.images.anythingllm.repository }}:{{ .Values.images.anythingllm.tag }}"
           workingDir: /opt/app-root/src
         - resources:
             limits:
@@ -152,6 +147,80 @@ spec:
             - '--email-domain=*'
             - '--skip-provider-button'
             - '--openshift-sar={"verb":"get","resource":"notebooks","resourceAPIGroup":"kubeflow.org","resourceName":"anythingllm","namespace":"{{ .Release.Namespace }}"}'
+        - name: anythingllm-automation
+          image: keinos/sqlite3:latest
+          command: ["/bin/sh", "-c"]
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 64Mi
+          volumeMounts:
+            - mountPath: /opt/app-root/src
+              name: anythingllm
+          args:
+            - |
+              set -e
+              
+              echo "=== AnythingLLM API Key Setup ==="
+              echo "Looking for database..."
+              
+              # Use the known database location from our successful job
+              DB_PATH="/opt/app-root/src/anythingllm/storage/anythingllm.db"
+              
+              # Wait for AnythingLLM to create the database
+              echo "Waiting for database at: $DB_PATH"
+              for i in $(seq 1 120); do
+                if [ -f "$DB_PATH" ]; then
+                  echo "Database found after ${i} seconds!"
+                  break
+                fi
+                echo "Waiting for database... (${i}/120)"
+                sleep 1
+              done
+              
+              if [ ! -f "$DB_PATH" ]; then
+                echo "❌ Database not found after waiting, checking what exists:"
+                find /opt/app-root/src -name "*.db" -type f 2>/dev/null || echo "No .db files found"
+                ls -la /opt/app-root/src/anythingllm/ 2>/dev/null || echo "Cannot list anythingllm directory"
+                exit 1
+              fi
+              
+              # Wait a bit for database to be fully initialized
+              echo "Waiting for database to be ready..."
+              sleep 5
+              
+              # Check if API key already exists
+              if sqlite3 "$DB_PATH" "SELECT 1 FROM api_keys WHERE secret = 'sk-automation-workspace-setup' LIMIT 1;" 2>/dev/null | grep -q 1; then
+                echo "✅ API key already exists"
+              else
+                echo "Adding API key to database..."
+                
+                sqlite3 "$DB_PATH" << 'EOF'
+              -- Create API key table if it doesn't exist
+              CREATE TABLE IF NOT EXISTS api_keys (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                secret TEXT UNIQUE NOT NULL,
+                createdBy INTEGER,
+                createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+                lastUpdatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
+              );
+              
+              -- Insert API key
+              INSERT OR REPLACE INTO api_keys (secret, createdBy, createdAt, lastUpdatedAt) 
+              VALUES ('sk-automation-workspace-setup', 1, datetime('now'), datetime('now'));
+              EOF
+                
+                echo "✅ API key added: sk-automation-workspace-setup"
+              fi
+              
+              echo "=== API key setup complete! ==="
+              
+              # Keep the sidecar running (required for Kubernetes)
+              echo "Keeping sidecar alive..."
+              sleep infinity
             
       enableServiceLinks: false
       serviceAccountName: anythingllm
