@@ -112,9 +112,9 @@ oc -n ${PROJECT}  get pods -w
 ```
 (Output)
 NAME                                         READY   STATUS    RESTARTS   AGE
-anythingllm-0                                2/2     Running   0          5m
-anythingllm-seed-fg4vm                       1/1     Done      0          5m
-tinyllama-1b-cpu-predictor-df76b56d6-fw8fp   2/2     Running   0          5m
+anythingllm-0                                 3/3     Running     0          76s
+anythingllm-seed-lchf6                        0/1     Completed   0          76s
+tinyllama-1b-cpu-predictor-544bdf75f9-x9fwh   2/2     Running     0          75s
 ```
 
 ### Test
@@ -125,13 +125,20 @@ oc get routes rhods-dashboard -n redhat-ods-applications
 ```
 
 Once inside the dashboard, navigate to Data Science Projects -> tinyllama-cpu-demo (or what you called your ${PROJECT} if you changed from default).
+
 ![OpenShift AI Projects](docs/images/rhoai-1.png)
 
 Inside the project you can see Workbenches, open up the one for AnythingLLM.
-![OpenShift AI Projects](docs/images/rhoai-2.png) #TODO: Update
 
-Finally, click on the Workspace that's pre-created for you and you can start chatting with your AI Leadership & Strategy Lifecoach! :)
-![AnythingLLM](docs/images/anythingllm-1.png) #TODO: Update
+![OpenShift AI Projects](docs/images/rhoai-2.png)
+
+Finally, click on the **AI Director Lifecoach** Workspace that's pre-created for you and you can start chatting with your AI Leadership & Strategy Lifecoach! :)  
+Try for example asking it:
+```
+Hi, I'm trying to keep up with all the AI changes while also balancing my life but getting overwhelmed, how can I deal with this?
+```
+
+![AnythingLLM](docs/images/anythingllm-1.png)
 
 
 
