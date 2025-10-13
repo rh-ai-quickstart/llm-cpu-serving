@@ -113,6 +113,7 @@ oc -n ${PROJECT}  get pods -w
 (Output)
 NAME                                         READY   STATUS    RESTARTS   AGE
 anythingllm-0                                2/2     Running   0          5m
+anythingllm-seed-fg4vm                       1/1     Done      0          5m
 tinyllama-1b-cpu-predictor-df76b56d6-fw8fp   2/2     Running   0          5m
 ```
 
