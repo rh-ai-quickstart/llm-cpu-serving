@@ -26,11 +26,11 @@ Use this project to quickly spin up a minimal vLLM instance and start serving
 models like TinyLlama on CPU—no GPU required. 🚀
 
 
-<!-- ### See it in action -->
+<!-- ### See it in action
 
-<!-- Red Hat uses Arcade software to create interactive demos. Check out  -->
-<!-- [Quickstart with TinyLlama on CPU](https://interact.redhat.com/share/zsT3j9cgPt9yyPchb7EJ) -->
-<!--  to see it in action. -->
+Red Hat uses Arcade software to create interactive demos. Check out 
+[Quickstart with TinyLlama on CPU](https://interact.redhat.com/share/zsT3j9cgPt9yyPchb7EJ)
+ to see it in action. -->
 
 
 ### Architecture diagrams
@@ -73,6 +73,8 @@ Here's an example machine from AWS that works well: [https://instances.vantage.s
 
 ## Deploy
 
+Follow the below steps to deploy and test the AI Lifecoach.
+
 ### Clone
 
 ```
@@ -80,12 +82,12 @@ git clone https://github.com/rh-ai-quickstart/llm-cpu-serving.git && \
     cd llm-cpu-serving/  
 ```
 
-<!-- ### (Optional) Update storage class name -->
+<!-- ### (Optional) Update storage class name
 
-<!-- If needed, update storage class name in `helm/values.yaml`. -->
-<!-- ``` -->
-<!-- storageClassName: gp3-csi -->
-<!-- ``` -->
+If needed, update storage class name in `helm/values.yaml`.
+```
+storageClassName: gp3-csi
+``` -->
 
 ### Create the project
 
@@ -125,10 +127,10 @@ Once inside the dashboard, navigate to Data Science Projects -> tinyllama-cpu-de
 ![OpenShift AI Projects](docs/images/rhoai-1.png)
 
 Inside the project you can see Workbenches, open up the one for AnythingLLM.
-![OpenShift AI Projects](docs/images/rhoai-2.png)
+![OpenShift AI Projects](docs/images/rhoai-2.png) #TODO: Update
 
-Finally, you can create a new Workspace in AnythingLLM and start chatting with your model! :)
-![AnythingLLM](docs/images/anythingllm-1.png)
+Finally, click on the Workspace that's pre-created for you and you can start chatting with your AI Leadership & Strategy Lifecoach! :)
+![AnythingLLM](docs/images/anythingllm-1.png) #TODO: Update
 
 
 
