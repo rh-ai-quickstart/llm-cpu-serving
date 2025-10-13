@@ -137,6 +137,7 @@ Try for example asking it:
 ```
 Hi, I'm trying to keep up with all the AI changes while also balancing my life but getting overwhelmed, how can I deal with this?
 ```
+It will provide you a reply and some citations related to the question.
 
 ![AnythingLLM](docs/images/anythingllm-1.png)
 
