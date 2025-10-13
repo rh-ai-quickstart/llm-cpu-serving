@@ -61,7 +61,7 @@ Here's an example machine from AWS that works well: [https://instances.vantage.s
 ### Minimum software requirements
 
 - Red Hat OpenShift 4.16.24 or later
-- Red Hat OpenShift AI 2.16.2
+- Red Hat OpenShift AI 2.16.2 or later
 - Dependencies for [Single-model server](https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed/2.16/html/installing_and_uninstalling_openshift_ai_self-managed/installing-the-single-model-serving-platform_component-install#configuring-automated-installation-of-kserve_component-install):
     - Red Hat OpenShift Service Mesh
     - Red Hat OpenShift Serverless
