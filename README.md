@@ -26,11 +26,11 @@ Use this project to quickly spin up a minimal vLLM instance and start serving
 models like TinyLlama on CPU—no GPU required. 🚀
 
 
-<!-- ### See it in action -->
+<!-- ### See it in action
 
-<!-- Red Hat uses Arcade software to create interactive demos. Check out  -->
-<!-- [Quickstart with TinyLlama on CPU](https://interact.redhat.com/share/zsT3j9cgPt9yyPchb7EJ) -->
-<!--  to see it in action. -->
+Red Hat uses Arcade software to create interactive demos. Check out 
+[Quickstart with TinyLlama on CPU](https://interact.redhat.com/share/zsT3j9cgPt9yyPchb7EJ)
+ to see it in action. -->
 
 
 ### Architecture diagrams
@@ -73,6 +73,8 @@ Here's an example machine from AWS that works well: [https://instances.vantage.s
 
 ## Deploy
 
+Follow the below steps to deploy and test the AI Lifecoach.
+
 ### Clone
 
 ```
@@ -80,12 +82,12 @@ git clone https://github.com/rh-ai-quickstart/llm-cpu-serving.git && \
     cd llm-cpu-serving/  
 ```
 
-<!-- ### (Optional) Update storage class name -->
+<!-- ### (Optional) Update storage class name
 
-<!-- If needed, update storage class name in `helm/values.yaml`. -->
-<!-- ``` -->
-<!-- storageClassName: gp3-csi -->
-<!-- ``` -->
+If needed, update storage class name in `helm/values.yaml`.
+```
+storageClassName: gp3-csi
+``` -->
 
 ### Create the project
 
@@ -110,8 +112,9 @@ oc -n ${PROJECT}  get pods -w
 ```
 (Output)
 NAME                                         READY   STATUS    RESTARTS   AGE
-anythingllm-0                                2/2     Running   0          5m
-tinyllama-1b-cpu-predictor-df76b56d6-fw8fp   2/2     Running   0          5m
+anythingllm-0                                 3/3     Running     0          76s
+anythingllm-seed-lchf6                        0/1     Completed   0          76s
+tinyllama-1b-cpu-predictor-544bdf75f9-x9fwh   2/2     Running     0          75s
 ```
 
 ### Test
@@ -122,12 +125,20 @@ oc get routes rhods-dashboard -n redhat-ods-applications
 ```
 
 Once inside the dashboard, navigate to Data Science Projects -> tinyllama-cpu-demo (or what you called your ${PROJECT} if you changed from default).
+
 ![OpenShift AI Projects](docs/images/rhoai-1.png)
 
 Inside the project you can see Workbenches, open up the one for AnythingLLM.
+
 ![OpenShift AI Projects](docs/images/rhoai-2.png)
 
-Finally, you can create a new Workspace in AnythingLLM and start chatting with your model! :)
+Finally, click on the **AI Director Lifecoach** Workspace that's pre-created for you and you can start chatting with your AI Leadership & Strategy Lifecoach! :)  
+Try for example asking it:
+```
+Hi, I'm trying to keep up with all the AI changes while also balancing my life but getting overwhelmed, how can I deal with this?
+```
+It will provide you a reply and some citations related to the question.
+
 ![AnythingLLM](docs/images/anythingllm-1.png)
 
 
