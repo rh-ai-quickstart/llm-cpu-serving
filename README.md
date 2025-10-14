@@ -1,7 +1,6 @@
 # AI Leadership & Strategy Lifecoach
 
-Streamlined chat interface guiding AI executives on strategy, team building,
-ethics, governance, and leadership in a rapidly evolving AI landscape. 
+Deploy a lightweight AI leadership chat assistant using a large language model on CPU-based infrastructure.
 
 ## Detailed description 
 
