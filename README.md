@@ -1,4 +1,4 @@
-# AI Leadership & Strategy Lifecoach
+# Serve LLMs on CPUs for lightweight inference
 
 Deploy a lightweight AI leadership chat assistant using a large language model on CPU-based infrastructure.
 
