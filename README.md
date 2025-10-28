@@ -157,6 +157,6 @@ helm uninstall ${PROJECT} --namespace ${PROJECT}
 
 ## Tags
 
-* **Industry:** Cross-industry
 * **Product:** OpenShift AI 
 * **Use case:** Productivity
+* **Business challenge:** Adopt and scale AI 
