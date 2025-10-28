@@ -1,4 +1,4 @@
-# Serve LLMs on CPUs for lightweight inference
+# AI Leadership & Strategy Lifecoach
 
 Deploy a lightweight AI leadership chat assistant using a large language model on CPU-based infrastructure.
 
@@ -157,6 +157,6 @@ helm uninstall ${PROJECT} --namespace ${PROJECT}
 
 ## Tags
 
-* **Industry:** Cross-industry
 * **Product:** OpenShift AI 
 * **Use case:** Productivity
+* **Business challenge:** Adopt and scale AI 
