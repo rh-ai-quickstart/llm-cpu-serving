@@ -24,7 +24,12 @@ spec:
         - {{ .Values.model.maxModelLen | quote }}
         - '--served-model-name'
         - {{ .Values.model.name }}
-      image: {{ .Values.images.vllmRuntime.repository }}:{{ .Values.images.vllmRuntime.tag }}
+      env:
+        - name: VLLM_CPU_KVCACHE_SPACE
+          value: "4"
+        - name: VLLM_CPU_SGL_KERNEL
+          value: "1"
+      image: {{ .Values.images.vllmRuntime.repository }}
       name: kserve-container
       ports:
         - containerPort: 8080

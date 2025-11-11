@@ -1,0 +1,111 @@
+id\tseverity\tbase-score\tpackage\tversion\tfix-verion\tlocation	RH_VEX
+CVE-2025-1376	Low	2.5	elfutils-libelf	0.192-6.el10_0	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	2.5
+CVE-2025-1376	Low	2.5	elfutils-libs	0.192-6.el10_0	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	2.5
+CVE-2025-1215	Low	2.8	vim-data	2:9.1.083-5.el10_0.1	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	2.8
+CVE-2025-1150	Low	3.1	binutils	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.1
+CVE-2025-1150	Low	3.1	binutils-gold	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.1
+CVE-2025-1151	Low	3.1	binutils	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.1
+CVE-2025-1151	Low	3.1	binutils-gold	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.1
+CVE-2025-1152	Low	3.1	binutils	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.1
+CVE-2025-1152	Low	3.1	binutils-gold	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.1
+CVE-2025-1153	Low	3.1	binutils	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.1
+CVE-2025-1153	Low	3.1	binutils-gold	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.1
+CVE-2025-1795	Low	3.1	python3	3.12.9-2.el10_0.3	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.1
+CVE-2025-1795	Low	3.1	python3-devel	3.12.9-2.el10_0.3	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.1
+CVE-2025-1795	Low	3.1	python3-libs	3.12.9-2.el10_0.3	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.1
+CVE-2024-43374	Low	3.3	vim-data	2:9.1.083-5.el10_0.1	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.3
+CVE-2025-11412	Low	3.3	binutils	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.3
+CVE-2025-11412	Low	3.3	binutils-gold	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.3
+CVE-2025-11414	Low	3.3	binutils	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.3
+CVE-2025-11414	Low	3.3	binutils-gold	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.3
+CVE-2025-11494	Low	3.3	binutils	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.3
+CVE-2025-11494	Low	3.3	binutils-gold	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.3
+CVE-2025-11495	Low	3.3	binutils	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.3
+CVE-2025-11495	Low	3.3	binutils-gold	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.3
+CVE-2025-11839	Low	3.3	binutils	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.3
+CVE-2025-11839	Low	3.3	binutils-gold	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.3
+CVE-2025-11840	Low	3.3	binutils	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.3
+CVE-2025-11840	Low	3.3	binutils-gold	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.3
+CVE-2025-1371	Low	3.3	elfutils-libelf	0.192-6.el10_0	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.3
+CVE-2025-1371	Low	3.3	elfutils-libs	0.192-6.el10_0	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.3
+CVE-2025-1377	Low	3.3	elfutils-libelf	0.192-6.el10_0	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.3
+CVE-2025-1377	Low	3.3	elfutils-libs	0.192-6.el10_0	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.3
+CVE-2025-3198	Low	3.3	binutils	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.3
+CVE-2025-3198	Low	3.3	binutils-gold	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.3
+CVE-2025-9389	Low	3.3	vim-data	2:9.1.083-5.el10_0.1	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.3
+CVE-2024-56433	Low	3.6	shadow-utils	2:4.15.0-5.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.6
+CVE-2024-47814	Low	3.9	vim-data	2:9.1.083-5.el10_0.1	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	3.9
+CVE-2023-50007	Medium	4	ffmpeg	5.1.6	5.1.7	/usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavcodec-e0dd92b8.so.59.37.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavformat-d296e685.so.59.27.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavutil-734d06dd.so.57.28.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libswresample-3e7db482.so.4.7.100	null
+CVE-2025-5244	Medium	4	binutils	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	4.0
+CVE-2025-5244	Medium	4	binutils-gold	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	4.0
+CVE-2025-5245	Medium	4	binutils	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	4.0
+CVE-2025-5245	Medium	4	binutils-gold	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	4.0
+CVE-2024-41965	Low	4.2	vim-data	2:9.1.083-5.el10_0.1	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	4.2
+CVE-2025-22134	Low	4.2	vim-data	2:9.1.083-5.el10_0.1	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	4.2
+CVE-2025-24014	Low	4.2	vim-data	2:9.1.083-5.el10_0.1	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	4.2
+CVE-2025-26603	Low	4.2	vim-data	2:9.1.083-5.el10_0.1	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	4.2
+CVE-2025-6069	Medium	4.3	python3	3.12.9-2.el10_0.3	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	4.3
+CVE-2025-6069	Medium	4.3	python3-devel	3.12.9-2.el10_0.3	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	4.3
+CVE-2025-6069	Medium	4.3	python3-libs	3.12.9-2.el10_0.3	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	4.3
+CVE-2025-8291	Medium	4.3	python3	3.12.9-2.el10_0.3	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	4.3
+CVE-2025-8291	Medium	4.3	python3-devel	3.12.9-2.el10_0.3	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	4.3
+CVE-2025-8291	Medium	4.3	python3-libs	3.12.9-2.el10_0.3	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	4.3
+CVE-2025-11413	Low	4.4	binutils	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	4.4
+CVE-2025-11413	Low	4.4	binutils-gold	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	4.4
+CVE-2025-29768	Medium	4.4	vim-data	2:9.1.083-5.el10_0.1	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	4.4
+CVE-2025-5278	Medium	4.4	coreutils-single	9.5-6.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	4.4
+CVE-2024-41957	Low	4.5	vim-data	2:9.1.083-5.el10_0.1	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	4.5
+CVE-2024-43802	Low	4.5	vim-data	2:9.1.083-5.el10_0.1	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	4.5
+CVE-2024-45306	Low	4.5	vim-data	2:9.1.083-5.el10_0.1	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	4.5
+CVE-2023-6601	Medium	4.7	ffmpeg	5.1.6	4.3.9	4.4.6	5.1.7	6.1.3	7.0.3	7.1.1	/usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavcodec-e0dd92b8.so.59.37.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavformat-d296e685.so.59.27.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavutil-734d06dd.so.57.28.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libswresample-3e7db482.so.4.7.100	4.7
+CVE-2025-4598	Medium	4.7	systemd	257-9.el10_0.1	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	4.7
+CVE-2025-4598	Medium	4.7	systemd-libs	257-9.el10_0.1	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	4.7
+CVE-2025-4598	Medium	4.7	systemd-pam	257-9.el10_0.1	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	4.7
+CVE-2024-7592	Low	4.8	python3	3.12.9-2.el10_0.3	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	4.8
+CVE-2024-7592	Low	4.8	python3-devel	3.12.9-2.el10_0.3	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	4.8
+CVE-2024-7592	Low	4.8	python3-libs	3.12.9-2.el10_0.3	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	4.8
+CVE-2024-28835	Medium	5	gnutls	3.8.9-9.el10_0.14	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	5.0
+CVE-2024-57360	Low	5	binutils	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	5.0
+CVE-2024-57360	Low	5	binutils-gold	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	5.0
+CVE-2025-4516	Medium	5.1	python3	3.12.9-2.el10_0.3	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	5.1
+CVE-2025-4516	Medium	5.1	python3-devel	3.12.9-2.el10_0.3	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	5.1
+CVE-2025-4516	Medium	5.1	python3-libs	3.12.9-2.el10_0.3	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	5.1
+CVE-2023-6602	Medium	5.3	ffmpeg	5.1.6	4.3.9	4.4.6	5.1.7	6.1.3	7.0.3	7.1.1	/usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavcodec-e0dd92b8.so.59.37.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavformat-d296e685.so.59.27.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavutil-734d06dd.so.57.28.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libswresample-3e7db482.so.4.7.100	5.3
+CVE-2023-6604	Medium	5.3	ffmpeg	5.1.6	4.3.9	4.4.6	5.1.7	6.1.3	7.0.3	7.1.1	/usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavcodec-e0dd92b8.so.59.37.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavformat-d296e685.so.59.27.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavutil-734d06dd.so.57.28.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libswresample-3e7db482.so.4.7.100	5.3
+CVE-2024-12133	Medium	5.3	libtasn1	4.20.0-1.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	5.3
+CVE-2024-12243	Medium	5.3	gnutls	3.8.9-9.el10_0.14	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	5.3
+CVE-2024-28834	Medium	5.3	gnutls	3.8.9-9.el10_0.14	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	5.3
+CVE-2025-0518	Medium	5.3	ffmpeg	5.1.6	3.4.14	4.2.11	4.3.9	4.4.6	5.1.7	6.1.3	7.0.3	7.1.1	/usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavcodec-e0dd92b8.so.59.37.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavformat-d296e685.so.59.27.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavutil-734d06dd.so.57.28.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libswresample-3e7db482.so.4.7.100	4.6
+CVE-2025-11081	Medium	5.3	binutils	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	5.3
+CVE-2025-11081	Medium	5.3	binutils-gold	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	5.3
+CVE-2025-11082	Medium	5.3	binutils	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	5.3
+CVE-2025-11082	Medium	5.3	binutils-gold	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	5.3
+CVE-2025-11083	Medium	5.3	binutils	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	5.3
+CVE-2025-11083	Medium	5.3	binutils-gold	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	5.3
+CVE-2025-50181	Medium	5.3	python3-pip	23.3.2-7.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	5.3
+CVE-2025-50181	Medium	5.3	python3-pip-wheel	23.3.2-7.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	5.3
+CVE-2025-50182	Medium	5.3	python3-pip	23.3.2-7.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	5.3
+CVE-2025-50182	Medium	5.3	python3-pip-wheel	23.3.2-7.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	5.3
+CVE-2025-52099	Medium	5.3	sqlite-libs	3.46.1-5.el10_0	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	5.3
+CVE-2025-7545	Medium	5.3	binutils	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	5.3
+CVE-2025-7545	Medium	5.3	binutils-gold	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	5.3
+CVE-2025-7546	Medium	5.3	binutils	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	5.3
+CVE-2025-7546	Medium	5.3	binutils-gold	2.41-53.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	5.3
+CVE-2025-29087	Medium	5.5	sqlite-libs	3.46.1-5.el10_0	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	5.5
+CVE-2024-35195	Medium	5.6	python3-requests	2.32.4-1.el10_0	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	5.6
+CVE-2025-45582	Medium	5.6	tar	2:1.35-7.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	5.6
+CVE-2025-59729	Medium	5.7	ffmpeg	5.1.6	8.0	/usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavcodec-e0dd92b8.so.59.37.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavformat-d296e685.so.59.27.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavutil-734d06dd.so.57.28.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libswresample-3e7db482.so.4.7.100	6.8
+CVE-2025-7458	Medium	6.1	sqlite-libs	3.46.1-5.el10_0	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	6.1
+CVE-2025-22919	Medium	6.5	ffmpeg	5.1.6	4.2.11	4.3.9	4.4.6	5.1.7	6.1.3	7.0.3	7.1.1	/usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavcodec-e0dd92b8.so.59.37.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavformat-d296e685.so.59.27.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavutil-734d06dd.so.57.28.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libswresample-3e7db482.so.4.7.100	5.3
+CVE-2005-2541	Medium	7	tar	2:1.35-7.el10	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	7.0
+CVE-2023-6605	High	7.2	ffmpeg	5.1.6	4.3.9	4.4.6	5.1.7	6.1.3	7.0.3	7.1.1	/usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavcodec-e0dd92b8.so.59.37.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavformat-d296e685.so.59.27.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavutil-734d06dd.so.57.28.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libswresample-3e7db482.so.4.7.100	7.2
+CVE-2025-9951	High	7.2	ffmpeg	5.1.6	7.1.2	/usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavcodec-e0dd92b8.so.59.37.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavformat-d296e685.so.59.27.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavutil-734d06dd.so.57.28.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libswresample-3e7db482.so.4.7.100	7.1
+CVE-2024-12254	High	7.5	python3	3.12.9-2.el10_0.3	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	7.5
+CVE-2024-12254	High	7.5	python3-devel	3.12.9-2.el10_0.3	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	7.5
+CVE-2024-12254	High	7.5	python3-libs	3.12.9-2.el10_0.3	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	7.5
+CVE-2024-45490	Medium	7.5	expat	2.7.1-1.el10_0.3	None	/usr/lib/sysimage/rpm/rpmdb.sqlite	7.5
+CVE-2023-50008	High	7.8	ffmpeg	5.1.6	5.1.7	/usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavcodec-e0dd92b8.so.59.37.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavformat-d296e685.so.59.27.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavutil-734d06dd.so.57.28.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libswresample-3e7db482.so.4.7.100	null
+CVE-2023-50010	High	7.8	ffmpeg	5.1.6	3.4.14	4.2.11	4.3.9	4.4.6	5.1.7	/usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavcodec-e0dd92b8.so.59.37.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavformat-d296e685.so.59.27.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavutil-734d06dd.so.57.28.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libswresample-3e7db482.so.4.7.100	null
+CVE-2024-31582	High	7.8	ffmpeg	5.1.6	5.1.7	/usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavcodec-e0dd92b8.so.59.37.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavformat-d296e685.so.59.27.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavutil-734d06dd.so.57.28.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libswresample-3e7db482.so.4.7.100	null
+CVE-2023-49502	High	8.8	ffmpeg	5.1.6	3.4.14	4.2.11	4.3.9	4.4.6	5.1.7	/usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavcodec-e0dd92b8.so.59.37.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavformat-d296e685.so.59.27.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavutil-734d06dd.so.57.28.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libswresample-3e7db482.so.4.7.100	null
+CVE-2025-1594	High	8.8	ffmpeg	5.1.6	7.1.2	/usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavcodec-e0dd92b8.so.59.37.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavformat-d296e685.so.59.27.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libavutil-734d06dd.so.57.28.100; /usr/local/lib64/python3.12/site-packages/opencv_python_headless.libs/libswresample-3e7db482.so.4.7.100	6.3

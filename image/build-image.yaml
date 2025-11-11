@@ -1,0 +1,35 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: vllm-xeon-ubi
+  namespace: build-vllm-cpu
+spec:
+  runPolicy: Serial
+  nodeSelector:
+    node.kubernetes.io/instance-type: "i7i.4xlarge"
+  resources:
+    requests:
+      cpu: "1"
+      memory: "2Gi"
+      ephemeral-storage: "8Gi"
+    limits:
+      cpu: "4"
+      memory: "48Gi"
+      ephemeral-storage: "60Gi"
+  source:
+    type: Git
+    git:
+      uri: https://github.com/RHRolun/vllm.git
+      ref: refs/pull/5/head
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: docker/Dockerfile.xeon-ubi
+  output:
+    to:
+      kind: DockerImage
+      name: quay.io/rlundber/vllm_cpu:intel-0.3-ubi10
+    pushSecret:
+      name: quay-push
+  successfulBuildsHistoryLimit: 5
+  failedBuildsHistoryLimit: 5

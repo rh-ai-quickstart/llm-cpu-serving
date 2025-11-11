@@ -26,3 +26,21 @@ spec:
           memory: {{ .Values.resources.inference.requests.memory | quote }}
       runtime: vllm-cpu
       storageUri: {{ .Values.model.storageUri | quote }}
+      nodeSelector:
+        node.kubernetes.io/instance-type: "i7i.4xlarge"
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: tinyllama-1b-cpu
+spec:
+  to:
+    kind: Service
+    name: tinyllama-1b-cpu-predictor
+    weight: 100
+  port:
+    targetPort: tinyllama-1b-cpu-predictor
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: None
+  wildcardPolicy: None

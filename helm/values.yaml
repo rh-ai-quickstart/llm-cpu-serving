@@ -30,7 +30,7 @@ aiLifecoach:
 
 images:
   vllmRuntime:
-    repository: "quay.io/rh-aiservices-bu/vllm-cpu-openai-ubi9"
+    repository: "quay.io/rlundber/vllm_cpu:intel-0.3-ubi10"
     tag: "0.3"
   anythingllm:
     repository: "quay.io/rh-aiservices-bu/anythingllm-workbench"
