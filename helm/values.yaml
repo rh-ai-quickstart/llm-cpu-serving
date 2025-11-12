@@ -40,12 +40,17 @@ model:
   storageUri: "oci://quay.io/rh-aiservices-bu/tinyllama:1.0"
   name: "tinyllama"
   maxModelLen: 2048
+  dtype: "bfloat16"
+  block_size: "128"
+  max_num_batched_tokens: "2048"
+  max_num_seqs: "256"
 
 resources:
   inference:
     requests:
       cpu: "2"
       memory: "4Gi"
+      tp: "1"
     limits:
       cpu: "8"
       memory: "8Gi"
