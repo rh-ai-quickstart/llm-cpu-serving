@@ -24,6 +24,28 @@ spec:
         - {{ .Values.model.maxModelLen | quote }}
         - '--served-model-name'
         - {{ .Values.model.name }}
+        - '--tensor-parallel-size'
+        - {{ .Values.resources.inference.tp }}
+        - '--dtype'
+        - {{ .Values.model.dtype }}
+        - '--enforce-eager'
+        - '--distributed-executor-backend'
+        - "mp"
+        - '--block-size'
+        - {{ .Values.model.block_size }}
+        - '--max-num-batched-tokens'
+        - {{ .Values.model.max_num_batched_tokens }}
+        - '--max-num-seqs'
+        - {{ .Values.model.max_num_seqs }}
+      env:
+        - name: VLLM_CPU_KVCACHE_SPACE
+          value: "40"
+        - name: VLLM_CPU_SGL_KERNEL
+          value: "1"
+        - name: VLLM_ALLOW_LONG_MAX_MODEL_LEN
+          value: "1"
+        - name: VLLM_RPC_TIMEOUT
+          value: "100000"
       image: {{ .Values.images.vllmRuntime.repository }}:{{ .Values.images.vllmRuntime.tag }}
       name: kserve-container
       ports:
