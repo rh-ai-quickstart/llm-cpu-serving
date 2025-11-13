@@ -1,11 +1,11 @@
 # Assistant to the HR Representative
 
-Deploy a lightweight chat assistant using a large language model on CPU-based infrastructure.
+![chat-example.png](docs/images/chat-example.png)
 
 ## Detailed description 
 
 The *Assistant to the HR Representative* is a lightweight quickstart designed to
-give HR Representatives a trusted sounding board for discussions and decisions. 
+give HR Representatives in FSI a trusted sounding board for discussions and decisions. 
 Chat with this assistant for quick insights and actionable advice. 
 
 This quickstart was designed for environments where GPUs are not available or
