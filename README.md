@@ -2,7 +2,7 @@
 
 ![chat-example.png](docs/images/chat-example.png)
 
-Replace hours spent search policy documents with higher-value relational work. 
+Replace hours spent searching policy documents with higher-value relational work. 
 
 ## Detailed description 
 
