@@ -2,10 +2,12 @@
 
 ![chat-example.png](docs/images/chat-example.png)
 
+Replace hours spent search policy documents with higher-value relational work. 
+
 ## Detailed description 
 
 The *Assistant to the HR Representative* is a lightweight quickstart designed to
-give HR Representatives in FSI a trusted sounding board for discussions and decisions. 
+give HR Representatives in Financial Services a trusted sounding board for discussions and decisions. 
 Chat with this assistant for quick insights and actionable advice. 
 
 This quickstart was designed for environments where GPUs are not available or
@@ -157,6 +159,6 @@ helm uninstall ${PROJECT} --namespace ${PROJECT}
 
 ## Tags
 
+* **Industry:** Banking and securities
 * **Product:** OpenShift AI 
 * **Use case:** Productivity
-* **Business challenge:** Adopt and scale AI 
