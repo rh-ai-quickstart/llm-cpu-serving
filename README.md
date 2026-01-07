@@ -74,7 +74,7 @@ Here's an example machine from AWS that works well: [https://instances.vantage.s
 
 ## Deploy
 
-Follow the below steps to deploy and test the AI Lifecoach.
+Follow the below steps to deploy and test the HR assistant.
 
 ### Clone
 
