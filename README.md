@@ -1,17 +1,19 @@
-# AI Leadership & Strategy Lifecoach
+# Assistant to the HR Representative
 
-Deploy a lightweight AI leadership chat assistant using a large language model on CPU-based infrastructure.
+![chat-example.png](docs/images/chat-example.png)
+
+Replace hours spent searching policy documents with higher-value relational work. 
 
 ## Detailed description 
 
-The *AI Leadership & Strategy Lifecoach* is a lightweight quickstart designed to
-give AI leaders a trusted sounding board for key decisions. Chat with this
-lifecoach for quick, strategic insights and actionable advice. 
+The *Assistant to the HR Representative* is a lightweight quickstart designed to
+give HR Representatives in Financial Services a trusted sounding board for discussions and decisions. 
+Chat with this assistant for quick insights and actionable advice. 
 
 This quickstart was designed for environments where GPUs are not available or
 necessary, making it ideal for lightweight inference use cases, prototyping, or
 constrained environments. By making the most of vLLM on CPU-based
-infrastructure, this AI lifecoach can be deployed to almost any OpenShift AI
+infrastructure, this Assistant to the HR Representative can be deployed to almost any OpenShift AI
 environment. 
 
 This quickstart includes a Helm chart for deploying:
@@ -91,7 +93,7 @@ storageClassName: gp3-csi
 ### Create the project
 
 ```bash
-PROJECT="ai-lifecoach"
+PROJECT="hr-assistant"
 
 oc new-project ${PROJECT}
 ``` 
@@ -131,10 +133,10 @@ Inside the project you can see Workbenches, open up the one for AnythingLLM.
 
 ![OpenShift AI Projects](docs/images/rhoai-2.png)
 
-Finally, click on the **AI Director Lifecoach** Workspace that's pre-created for you and you can start chatting with your AI Leadership & Strategy Lifecoach! :)  
+Finally, click on the **Assistant to the HR Representative** Workspace that's pre-created for you and you can start chatting with your Assistant to the HR Representative! :)  
 Try for example asking it:
 ```
-Hi, I'm trying to keep up with all the AI changes while also balancing my life but getting overwhelmed, how can I deal with this?
+Hi, one of our employees is going to get a raise, what do I need to keep in mind for this?
 ```
 It will provide you a reply and some citations related to the question.
 
@@ -157,6 +159,6 @@ helm uninstall ${PROJECT} --namespace ${PROJECT}
 
 ## Tags
 
+* **Industry:** Banking and securities
 * **Product:** OpenShift AI 
 * **Use case:** Productivity
-* **Business challenge:** Adopt and scale AI 
