@@ -1,4 +1,4 @@
-# Assistant to the HR Representative
+# Serve a lightweight HR assistant
 
 ![chat-example.png](docs/images/chat-example.png)
 
@@ -159,6 +159,6 @@ helm uninstall ${PROJECT} --namespace ${PROJECT}
 
 ## Tags
 
-* **Industry:** Banking and securities
+* **Industry:** Adopt and scale AI
 * **Product:** OpenShift AI 
 * **Use case:** Productivity
