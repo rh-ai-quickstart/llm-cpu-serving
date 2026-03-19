@@ -159,6 +159,6 @@ helm uninstall ${PROJECT} --namespace ${PROJECT}
 
 ## Tags
 
-* **Industry:** Adopt and scale AI
+* **Industry:** Banking and securities
 * **Product:** OpenShift AI 
 * **Use case:** Productivity
