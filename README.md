@@ -52,18 +52,20 @@ Red Hat uses Arcade software to create interactive demos. Check out
 ### Recommended hardware requirements 
 
 - No GPU needed! 🤖
-- 8 cores 
-- 8 Gi 
+- 32 cores 
+- 64 Gi 
 - Storage: 5Gi
 
-Note: This version is compiled for Intel CPU's (preferably with AWX512 enabled to be able to run compressed models as well, but optional).  
+Adjust the value of CPU and memory in `helm/values.yaml` as desired.
+
+Note: This version is compiled for Intel CPU's (preferably with AVX512 enabled to be able to run compressed models as well, but optional).  
 Here's an example machine from AWS that works well: [https://instances.vantage.sh/aws/ec2/m6i.4xlarge](https://instances.vantage.sh/aws/ec2/m6i.4xlarge)
 
 ### Minimum software requirements
 
 - Red Hat OpenShift 4.16.24 or later
-- Red Hat OpenShift AI 2.16.2 or later
-- Dependencies for [Single-model server](https://docs.redhat.com/en/documentation/red_hat_openshift_ai_self-managed/2.16/html/installing_and_uninstalling_openshift_ai_self-managed/installing-the-single-model-serving-platform_component-install#configuring-automated-installation-of-kserve_component-install):
+- Red Hat OpenShift AI 3.3.0 or later
+- Dependencies for Single-model server:
     - Red Hat OpenShift Service Mesh
     - Red Hat OpenShift Serverless
 
@@ -76,6 +78,8 @@ Here's an example machine from AWS that works well: [https://instances.vantage.s
 
 Follow the below steps to deploy and test the HR assistant.
 
+This example was tested on Red Hat OpenShift 4.21.8 & Red Hat OpenShift AI v3.3.0.
+
 ### Clone
 
 ```
@@ -83,12 +87,12 @@ git clone https://github.com/rh-ai-quickstart/llm-cpu-serving.git && \
     cd llm-cpu-serving/  
 ```
 
-<!-- ### (Optional) Update storage class name
+### (Optional) Update storage class name
 
 If needed, update storage class name in `helm/values.yaml`.
 ```
 storageClassName: gp3-csi
-``` -->
+```
 
 ### Create the project
 
@@ -120,12 +124,9 @@ tinyllama-1b-cpu-predictor-544bdf75f9-x9fwh   2/2     Running     0          75s
 
 ### Test
 
-You can get the OpenShift AI Dashboard URL by:
-```bash
-oc get routes rhods-dashboard -n redhat-ods-applications
-```
+From the OpenShift Console, go to the App Switcher / Waffle in the upper right and go to the Red Hat OpenShift AI Dashboard.
 
-Once inside the dashboard, navigate to Data Science Projects -> tinyllama-cpu-demo (or what you called your ${PROJECT} if you changed from default).
+Once inside the dashboard, navigate to Data Science Projects or Projects -> hr-assistant (or what you called your ${PROJECT} if you changed from default).
 
 ![OpenShift AI Projects](docs/images/rhoai-1.png)
 
