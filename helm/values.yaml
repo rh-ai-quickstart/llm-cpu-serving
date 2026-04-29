@@ -49,11 +49,11 @@ aiLifecoach:
 
 images:
   vllmRuntime:
-    repository: "quay.io/rh-aiservices-bu/vllm-cpu-openai-ubi9"
-    tag: "0.3"
+    repository: "quay.io/vllm/automation-vllm"
+    tag: "0.18.0rc1.dev7_rhaiv.0.ge974742fb.cpu"
   anythingllm:
     repository: "quay.io/rh-aiservices-bu/anythingllm-workbench"
-    tag: "1.8.5"
+    tag: "1.9.1"
 
 model:
   storageUri: "oci://quay.io/rh-aiservices-bu/tinyllama:1.0"
