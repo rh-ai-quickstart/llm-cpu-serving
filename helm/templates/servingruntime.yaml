@@ -26,6 +26,9 @@ spec:
         - {{ .Values.model.name }}
       image: {{ .Values.images.vllmRuntime.repository }}:{{ .Values.images.vllmRuntime.tag }}
       name: kserve-container
+      env:
+        - name: VLLM_CPU_KVCACHE_SPACE
+          value: "2"
       ports:
         - containerPort: 8080
           name: http1
