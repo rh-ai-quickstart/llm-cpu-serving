@@ -137,11 +137,33 @@ anythingllm-seed-lchf6                        0/1     Completed   0          76s
 tinyllama-1b-cpu-predictor-544bdf75f9-x9fwh   2/2     Running     0          75s
 ```
 
-### Test
+## Chat with the model
 
 From the OpenShift Console, go to the App Switcher / Waffle in the upper right and go to the Red Hat OpenShift AI Dashboard.
 
-Once inside the dashboard, navigate to Data Science Projects or Projects -> hr-assistant (or what you called your ${PROJECT} if you changed from default).
+After that you have two choices, to chat with the model through the RHOAI playground or to chat with it through the AnythingLLM UI (deployed as a workbench).
+
+### Chat through RHOAI Playground
+
+> ⚠️ Note: This only works if you have the Early Access feature "Playground" enabled.
+
+Once inside the dashboard, navigate to Gen AI studio -> Playground -> Project tinyllama-cpu-demo (or what you called your ${PROJECT} if you changed from default).
+
+Click on the Knowledge tab and enable RAG, then you can start chatting with your documents.  
+You can also customize the prompt in the Prompt tab, if you want to copy what is used in the values.yaml file for AnythingLLM.
+
+Try for example asking it:
+```
+Hi, one of our employees is going to get a raise, what do I need to keep in mind for this?
+```
+It will provide you a reply and some citations related to the question.
+
+![playground-rag](docs/images/playground-rag.png)
+
+### Chat through AnythingLLM
+
+
+Once inside the dashboard, navigate to Data Science Projects -> tinyllama-cpu-demo (or what you called your ${PROJECT} if you changed from default).
 
 ![OpenShift AI Projects](docs/images/rhoai-1.png)
 
@@ -164,13 +186,6 @@ It will provide you a reply and some citations related to the question.
 ```
 helm uninstall ${PROJECT} --namespace ${PROJECT} 
 ```
-
-
-### References 
-
-- The runtime is built from [vLLM CPU](https://docs.vllm.ai/en/latest/getting_started/installation/cpu.html)
-- Runtime image is pushed to [quay.io/repository/rh-aiservices-bu/vllm-cpu-openai-ubi9](https://quay.io/repository/rh-aiservices-bu/vllm-cpu-openai-ubi9)
-- Code for Runtime image and deployment can be found on [github.com/rh-aiservices-bu/llm-on-openshift](https://github.com/rh-aiservices-bu/llm-on-openshift/tree/main/serving-runtimes/vllm_runtime)
 
 
 ## Tags

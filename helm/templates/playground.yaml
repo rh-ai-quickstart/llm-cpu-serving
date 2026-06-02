@@ -1,0 +1,179 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: llama-stack-config
+  labels:
+    opendatahub.io/dashboard: "true"
+data:
+  config.yaml: |-
+    # Llama Stack Configuration
+    version: "2"
+    distro_name: rh
+    apis:
+    - responses
+    - datasetio
+    - files
+    - inference
+    - safety
+    - scoring
+    - tool_runtime
+    - vector_io
+    providers:
+      inference:
+      - provider_id: sentence-transformers
+        provider_type: inline::sentence-transformers
+        config: {}
+      - provider_id: vllm-{{ .Values.model.name }}
+        provider_type: remote::vllm
+        config:
+          api_token: ${env.VLLM_API_TOKEN_1:=fake}
+          base_url: http://{{ .Values.model.name }}-predictor.{{ .Release.Namespace }}.svc.cluster.local:8080/v1
+          max_tokens: ${env.VLLM_MAX_TOKENS:=4096}
+          tls_verify: ${env.VLLM_TLS_VERIFY:=false}
+      vector_io:
+      - provider_id: milvus
+        provider_type: inline::milvus
+        config:
+          db_path: /opt/app-root/src/.llama/distributions/rh/milvus.db
+          persistence:
+            backend: kv_default
+            namespace: vector_io::milvus
+      responses:
+      - provider_id: builtin
+        provider_type: inline::builtin
+        config:
+          persistence:
+            agent_state:
+              backend: kv_default
+              namespace: agents
+            responses:
+              backend: sql_default
+              max_write_queue_size: 10000
+              num_writers: 4
+              table_name: responses
+      eval: []
+      files:
+      - provider_id: meta-reference-files
+        provider_type: inline::localfs
+        config:
+          metadata_store:
+            backend: sql_default
+            table_name: files_metadata
+          storage_dir: /opt/app-root/src/.llama/distributions/rh/files
+      datasetio:
+      - provider_id: huggingface
+        provider_type: remote::huggingface
+        config:
+          kvstore:
+            backend: kv_default
+            namespace: datasetio::huggingface
+      scoring:
+      - provider_id: basic
+        provider_type: inline::basic
+        config: {}
+      - provider_id: llm-as-judge
+        provider_type: inline::llm-as-judge
+        config: {}
+      tool_runtime:
+      - provider_id: file-search
+        provider_type: inline::file-search
+        config: {}
+      - provider_id: model-context-protocol
+        provider_type: remote::model-context-protocol
+        config: {}
+      safety: []
+    metadata_store:
+      type: sqlite
+      db_path: /opt/app-root/src/.llama/distributions/rh/inference_store.db
+    storage:
+      backends:
+        kv_default:
+          db_path: /opt/app-root/src/.llama/distributions/rh/kvstore.db
+          type: kv_sqlite
+        sql_default:
+          db_path: /opt/app-root/src/.llama/distributions/rh/sql_store.db
+          type: sql_sqlite
+      stores:
+        conversations:
+          backend: sql_default
+          table_name: openai_conversations
+        inference:
+          backend: sql_default
+          table_name: inference_store
+        metadata:
+          backend: kv_default
+          namespace: registry
+    vector_stores:
+      default_provider_id: milvus
+      default_embedding_model:
+        provider_id: sentence-transformers
+        model_id: ibm-granite/granite-embedding-125m-english
+    registered_resources:
+      models:
+      - provider_id: sentence-transformers
+        model_id: sentence-transformers/ibm-granite/granite-embedding-125m-english
+        provider_model_id: ibm-granite/granite-embedding-125m-english
+        model_type: embedding
+        metadata:
+          embedding_dimension: 768
+      - provider_id: vllm-{{ .Values.model.name }}
+        model_id: {{ .Values.model.name }}
+        model_type: llm
+        metadata:
+          display_name: {{ .Values.model.name }}
+      shields: []
+      vector_stores: []
+      datasets: []
+      scoring_fns: []
+      benchmarks: []
+    server:
+      port: 8321
+---
+apiVersion: llamastack.io/v1alpha1
+kind: LlamaStackDistribution
+metadata:
+  annotations:
+    openshift.io/display-name: lsd-genai-playground
+  labels:
+    opendatahub.io/dashboard: "true"
+  name: lsd-genai-playground
+spec:
+  network:
+    allowedFrom:
+      namespaces:
+        - {{ .Release.Namespace }}
+    exposeRoute: false
+  replicas: 1
+  server:
+    containerSpec:
+      command:
+        - /bin/sh
+        - -c
+        - llama stack run /etc/llama-stack/config.yaml
+      env:
+        - name: VLLM_TLS_VERIFY
+          value: "false"
+        - name: MILVUS_DB_PATH
+          value: ~/.llama/milvus.db
+        - name: FMS_ORCHESTRATOR_URL
+          value: http://localhost
+        - name: VLLM_MAX_TOKENS
+          value: {{ .Values.model.maxOutputTokens | quote }}
+        - name: VLLM_API_TOKEN_1
+          value: fake
+        - name: LLAMA_STACK_CONFIG_DIR
+          value: /opt/app-root/src/.llama/distributions/rh/
+      name: llama-stack
+      port: 8321
+      resources:
+        limits:
+          cpu: "2"
+          memory: 12Gi
+        requests:
+          cpu: 250m
+          memory: 500Mi
+    distribution:
+      name: rh-dev
+    userConfig:
+      configMapName: llama-stack-config

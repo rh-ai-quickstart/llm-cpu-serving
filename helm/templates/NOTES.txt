@@ -1,3 +1,10 @@
-🎉 Your vLLM-powered TinyLlama AI Model has been successfully deployed!
+🎉 Deployed! Your HR AI assistant is warming up in **{{ .Release.Namespace }}**.
 
-You can access the Workbench through the Data Science project **{{ .Release.Namespace }}**
+🪈 Two background jobs are chugging away loading HR compliance docs into both
+AnythingLLM and the RHOAI playground, give them a couple of minutes.
+
+🧙‍♂️ When done, you can either chat with the Playground or the Workbench in the Project **{{ .Release.Namespace }}**.
+
+🕐 Impatient? Check the status:
+  oc logs -n {{ .Release.Namespace }} -l job-name=anythingllm-seed --tail=5
+  oc logs -n {{ .Release.Namespace }} -l job-name=rag-seed --tail=5

@@ -1,13 +1,15 @@
 apiVersion: serving.kserve.io/v1alpha1
 kind: ServingRuntime
 metadata:
-  annotations:
+  annotations:    
     opendatahub.io/accelerator-name: ""
     opendatahub.io/apiProtocol: REST
+    opendatahub.io/runtime-version: v0.18.0
+    opendatahub.io/serving-runtime-scope: global
     opendatahub.io/recommended-accelerators: ""
-    opendatahub.io/template-display-name: CUSTOM - vLLM Serving Runtime for CPU
+    opendatahub.io/template-display-name: vLLM CPU (x86) ServingRuntime for KServe
     opendatahub.io/template-name: vllm-cpu
-    openshift.io/display-name: CUSTOM - vLLM CPU
+    openshift.io/display-name: vLLM CPU (x86) ServingRuntime for KServe
   name: vllm-cpu
   labels:
     opendatahub.io/dashboard: "true"
@@ -24,7 +26,10 @@ spec:
         - {{ .Values.model.maxModelLen | quote }}
         - '--served-model-name'
         - {{ .Values.model.name }}
-      image: {{ .Values.images.vllmRuntime.repository }}:{{ .Values.images.vllmRuntime.tag }}
+        - '--enable-auto-tool-choice'
+        - '--tool-call-parser'
+        - 'hermes'
+      image: {{ .Values.images.vllmRuntime }}
       name: kserve-container
       env:
         - name: VLLM_CPU_KVCACHE_SPACE

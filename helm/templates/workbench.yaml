@@ -14,7 +14,7 @@ metadata:
     opendatahub.io/accelerator-name: ''
     openshift.io/description: ''
     openshift.io/display-name: AnythingLLM
-    notebooks.opendatahub.io/last-image-selection: 'anythingllm-workbench:{{ .Values.images.anythingllm.tag }}'
+    notebooks.opendatahub.io/last-image-selection: 'anythingllm-workbench:{{ .Values.images.anythingllm | splitList ":" | last }}'
     notebooks.opendatahub.io/last-size-selection: Small
     opendatahub.io/username: quickstart@redhat.com
   name: anythingllm
@@ -65,7 +65,7 @@ spec:
                                   --ServerApp.quit_button=False
                                   
             - name: JUPYTER_IMAGE
-              value: "{{ .Values.images.anythingllm.repository }}:{{ .Values.images.anythingllm.tag }}"
+              value: "{{ .Values.images.anythingllm }}"
             - name: SSL_CERT_FILE
               value: /etc/pki/tls/custom-certs/ca-bundle.crt
             - name: PIPELINES_SSL_SA_CERTS
@@ -93,7 +93,7 @@ spec:
           envFrom:
             - secretRef:
                 name: tinyllama-vllm-cpu
-          image: "{{ .Values.images.anythingllm.repository }}:{{ .Values.images.anythingllm.tag }}"
+          image: "{{ .Values.images.anythingllm }}"
           workingDir: /opt/app-root/src
         {{- if not (.Capabilities.APIVersions.Has "datasciencecluster.opendatahub.io/v2") }}
         - resources:
@@ -153,7 +153,7 @@ spec:
             - '--upstream-ca=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt'
             - '--email-domain=*'
             - '--skip-provider-button'
-            - '--openshift-sar={"verb":"get","resource":"notebooks","resourceAPIGroup":"kubeflow.org","resourceName":"anythingllm","namespace":"{{ .Release.Namespace }}"}'    
+            - '--openshift-sar={"verb":"get","resource":"notebooks","resourceAPIGroup":"kubeflow.org","resourceName":"anythingllm","namespace":"{{ .Release.Namespace }}"}'
         {{- end }}
         - name: anythingllm-automation
           image: keinos/sqlite3:latest
@@ -246,4 +246,3 @@ spec:
             name: workbench-trusted-ca-bundle
             optional: true
           name: trusted-ca
-          

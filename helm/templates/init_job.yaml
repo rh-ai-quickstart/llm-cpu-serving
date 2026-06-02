@@ -24,7 +24,7 @@ spec:
         - name: WORKSPACE_NAME
           value: {{ .Values.aiLifecoach.workspace.name | quote }}
         - name: SEED_URL
-          value: {{ join " " .Values.aiLifecoach.seedUrls | quote }}
+          value: "{{ range .Values.rag.seedDocuments }}{{ .url }} {{ end }}"
         args:
         - |
           set -eu

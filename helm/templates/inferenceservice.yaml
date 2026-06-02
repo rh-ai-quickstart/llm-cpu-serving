@@ -3,11 +3,22 @@ apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
 metadata:
   annotations:
-    openshift.io/display-name: tinyllama-1b-cpu
-    serving.kserve.io/deploymentMode: RawDeployment
-  name: tinyllama-1b-cpu
+    modelFormat: vLLM
+    security.opendatahub.io/enable-auth: 'false'
+    opendatahub.io/hardware-profile-resource-version: '20020372'
+    opendatahub.io/genai-use-case: Simple chat model
+    openshift.io/description: ''
+    openshift.io/display-name: {{ .Values.model.name }}
+    serving.kserve.io/deploymentMode: Standard
+    opendatahub.io/hardware-profile-namespace: redhat-ods-applications
+    opendatahub.io/hardware-profile-name: default-profile
+    opendatahub.io/connections: tinyllama-10-on-quayio
+    opendatahub.io/model-type: generative
+    # serving.kserve.io/deploymentMode: RawDeployment
+  name: {{ .Values.model.name }}
   labels:
     opendatahub.io/dashboard: 'true'
+    opendatahub.io/genai-asset: 'true'
     networking.knative.dev/visibility: cluster-local
 spec:
   predictor:
@@ -26,3 +37,8 @@ spec:
           memory: {{ .Values.resources.inference.requests.memory | quote }}
       runtime: vllm-cpu
       storageUri: {{ .Values.model.storageUri | quote }}
+      env:
+        - name: HF_HOME
+          value: /tmp/hf_home
+        - name: VLLM_CPU_KVCACHE_SPACE
+          value: "4"

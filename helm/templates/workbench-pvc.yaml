@@ -3,11 +3,10 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   annotations:
+    helm.sh/resource-policy: keep
     openshift.io/description: ''
     openshift.io/display-name: AnythingLLM
   name: anythingllm
-  finalizers:
-    - kubernetes.io/pvc-protection
   labels:
     opendatahub.io/dashboard: 'true'
 spec:
