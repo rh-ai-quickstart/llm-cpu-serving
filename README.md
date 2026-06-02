@@ -64,7 +64,7 @@ Here's an example machine from AWS that works well: [https://instances.vantage.s
 ### Minimum software requirements
 
 - Red Hat OpenShift 4.16.24 or later
-- Red Hat OpenShift AI 3.3.0 or later
+- Red Hat OpenShift AI 3.4.0 or later
 - Dependencies for Single-model server:
     - Red Hat OpenShift Service Mesh
     - Red Hat OpenShift Serverless
@@ -78,7 +78,7 @@ Here's an example machine from AWS that works well: [https://instances.vantage.s
 
 Follow the below steps to deploy and test the HR assistant.
 
-This example was tested on Red Hat OpenShift 4.21.8 & Red Hat OpenShift AI v3.3.0.
+This example was tested on Red Hat OpenShift 4.21.8 & Red Hat OpenShift AI v3.4.0.
 
 ### Clone
 
@@ -102,7 +102,7 @@ setting. jemalloc is set for pyarrow compatibility, if you require pyarrow
 usage in this image jemalloc should be set in LD_PRELOAD alongside libomp
 but vLLM will have degraded performance.
 
-If needed, configure the LD_PRELOAD variable in `helm/servingruntime.yaml`
+If needed, configure the LD_PRELOAD variable in `helm/templates/servingruntime.yaml`
 ```
 env:
   - name: LD_PRELOAD
