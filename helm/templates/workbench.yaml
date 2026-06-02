@@ -3,12 +3,18 @@ apiVersion: kubeflow.org/v1
 kind: Notebook
 metadata:
   annotations:
+    {{- if .Capabilities.APIVersions.Has "datasciencecluster.opendatahub.io/v2" }}
+    notebooks.opendatahub.io/inject-auth: 'true'
+    {{- else }}
     notebooks.opendatahub.io/inject-oauth: 'true'
+    {{- end }}
     opendatahub.io/image-display-name: AnythingLLM
+    opendatahub.io/notebook-image-name: "anythingllm-workbench"
+    opendatahub.io/workbench-image-namespace: {{ .Release.Namespace }}
     opendatahub.io/accelerator-name: ''
     openshift.io/description: ''
     openshift.io/display-name: AnythingLLM
-    notebooks.opendatahub.io/last-image-selection: '{{ .Release.Namespace }}/custom-anythingllm:1.8.5'
+    notebooks.opendatahub.io/last-image-selection: 'anythingllm-workbench:{{ .Values.images.anythingllm.tag }}'
     notebooks.opendatahub.io/last-size-selection: Small
     opendatahub.io/username: quickstart@redhat.com
   name: anythingllm
@@ -89,6 +95,7 @@ spec:
                 name: tinyllama-vllm-cpu
           image: "{{ .Values.images.anythingllm.repository }}:{{ .Values.images.anythingllm.tag }}"
           workingDir: /opt/app-root/src
+        {{- if not (.Capabilities.APIVersions.Has "datasciencecluster.opendatahub.io/v2") }}
         - resources:
             limits:
               cpu: 100m
@@ -146,7 +153,8 @@ spec:
             - '--upstream-ca=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt'
             - '--email-domain=*'
             - '--skip-provider-button'
-            - '--openshift-sar={"verb":"get","resource":"notebooks","resourceAPIGroup":"kubeflow.org","resourceName":"anythingllm","namespace":"{{ .Release.Namespace }}"}'
+            - '--openshift-sar={"verb":"get","resource":"notebooks","resourceAPIGroup":"kubeflow.org","resourceName":"anythingllm","namespace":"{{ .Release.Namespace }}"}'    
+        {{- end }}
         - name: anythingllm-automation
           image: keinos/sqlite3:latest
           command: ["/bin/sh", "-c"]
@@ -238,11 +246,4 @@ spec:
             name: workbench-trusted-ca-bundle
             optional: true
           name: trusted-ca
-        - name: oauth-config
-          secret:
-            defaultMode: 420
-            secretName: anythingllm-oauth-config
-        - name: tls-certificates
-          secret:
-            defaultMode: 420
-            secretName: anythingllm-tls
+          
