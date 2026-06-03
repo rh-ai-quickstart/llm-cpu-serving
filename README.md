@@ -36,7 +36,7 @@ Red Hat uses Arcade software to create interactive demos. Check out
 
 ### Architecture diagrams
 
-![architecture.png](docs/images/architecture.png)
+![Architecture showcasing how both the playground an AnythingLLM uses the model hosted with vLLM CPU](docs/images/architecture.png)
 
 
 ## Requirements 
@@ -158,18 +158,18 @@ Hi, one of our employees is going to get a raise, what do I need to keep in mind
 ```
 It will provide you a reply and some citations related to the question.
 
-![playground-rag](docs/images/playground-rag.png)
+![An example of asking a question to the playground with RAG enabled so it answers based on the documents](docs/images/playground-rag.png)
 
 ### Chat through AnythingLLM
 
 
 Once inside the dashboard, navigate to Data Science Projects -> tinyllama-cpu-demo (or what you called your ${PROJECT} if you changed from default).
 
-![OpenShift AI Projects](docs/images/rhoai-1.png)
+![Shows the OpenShift AI projects view](docs/images/rhoai-1.png)
 
 Inside the project you can see Workbenches, open up the one for AnythingLLM.
 
-![OpenShift AI Projects](docs/images/rhoai-2.png)
+![How AnythingLLM looks like when you just open it up](docs/images/rhoai-2.png)
 
 Finally, click on the **Assistant to the HR Representative** Workspace that's pre-created for you and you can start chatting with your Assistant to the HR Representative! :)  
 Try for example asking it:
@@ -178,7 +178,7 @@ Hi, one of our employees is going to get a raise, what do I need to keep in mind
 ```
 It will provide you a reply and some citations related to the question.
 
-![AnythingLLM](docs/images/anythingllm-1.png)
+![An example of asking a question in AnythingLLM and getting an answer based on some documents](docs/images/anythingllm-1.png)
 
 
 
