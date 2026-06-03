@@ -49,8 +49,8 @@ aiLifecoach:
 
 images:
   vllmRuntime:
-    repository: "quay.io/vllm/automation-vllm"
-    tag: "0.18.0_rhaiv.5.cpu"
+    repository: "registry.redhat.io/rhaii/vllm-cpu-rhel9"
+    tag: "3.4.0"
   anythingllm:
     repository: "quay.io/rh-aiservices-bu/anythingllm-workbench"
     tag: "1.9.1"
