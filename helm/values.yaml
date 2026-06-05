@@ -1,3 +1,29 @@
+# OCP username of the person deploying this chart (oc whoami).
+# Used to set the workbench owner annotation so the RHOAI dashboard generates the correct link.
+username: ""
+
+images:
+  vllmRuntime: "registry.redhat.io/rhaii/vllm-cpu-rhel9@sha256:cf6577f6d526561651df5390aad916c53820a18a1659e3fb39c1c5a62aef0e3c"
+  llamaStack: "registry.redhat.io/rhoai/odh-llama-stack-core-rhel9@sha256:d0375eb3cb815b9e750efaee4809715b3ebf64a126ca179dc3da8b9b1f36443a"
+  anythingllm: "quay.io/rh-aiservices-bu/anythingllm-workbench:1.9.1"
+
+model:
+  storageUri: "oci://quay.io/rh-aiservices-bu/tinyllama:1.0"
+  name: "tinyllama"
+  maxModelLen: 2048
+  maxOutputTokens: 512
+
+resources:
+  inference:
+    requests:
+      cpu: "2"
+      memory: "8Gi"
+    limits:
+      cpu: "8"
+      memory: "8Gi"
+
+storageClassName: gp3-csi
+
 aiLifecoach:
   workspace:
     name: "Assistant to the HR Representative"
@@ -14,10 +40,10 @@ aiLifecoach:
 
       Key areas of expertise:
       - Employee relations and conduct issues in a regulated banking environment
-      - HR’s role in fostering a strong compliance and risk culture
+      - HR's role in fostering a strong compliance and risk culture
       - Performance management, underperformance, and documentation for regulated roles
       - Hiring and onboarding in banking (background checks, FCRA, I-9, BSA/AML-sensitive roles)
-      - Workplace behavior: bullying, harassment, discrimination, retaliation, and “speak-up” culture
+      - Workplace behavior: bullying, harassment, discrimination, retaliation, and "speak-up" culture
       - Leave, working time, and attendance issues, with attention to fairness and consistency
       - Whistleblowing, investigations, and when to involve Legal, Compliance, or Audit
       - Training, certifications, and fitness/appropriateness for sensitive roles
@@ -41,32 +67,13 @@ aiLifecoach:
         - External counsel where appropriate.
       - When regulations could differ by state or regulator, explicitly call out that local rules may vary.
 
-  seedUrls:
-    - "https://www.goco.io/blog/key-hr-compliance-strategies-for-financial-services"
-    - "https://crosscheckcompliance.com/resources/articles/strong-compliance-culture/"
-    - "https://www.sunflowerbank.com/about-us/resource-articles/understanding-employment-laws/"
-    - "https://compliancy-group.com/anti-harassment-training-guide/"
-
-images:
-  vllmRuntime:
-    repository: "registry.redhat.io/rhaii/vllm-cpu-rhel9"
-    tag: "3.4.0"
-  anythingllm:
-    repository: "quay.io/rh-aiservices-bu/anythingllm-workbench"
-    tag: "1.9.1"
-
-model:
-  storageUri: "oci://quay.io/rh-aiservices-bu/tinyllama:1.0"
-  name: "tinyllama"
-  maxModelLen: 2048
-
-resources:
-  inference:
-    requests:
-      cpu: "2"
-      memory: "4Gi"
-    limits:
-      cpu: "8"
-      memory: "8Gi"
-
-storageClassName: gp3-csi
+rag:
+  seedDocuments:
+    - filename: hr-compliance-strategies.txt
+      url: https://www.goco.io/blog/key-hr-compliance-strategies-for-financial-services
+    - filename: strong-compliance-culture.txt
+      url: https://crosscheckcompliance.com/resources/articles/strong-compliance-culture/
+    - filename: understanding-employment-laws.txt
+      url: https://online.law.pitt.edu/blog/understanding-employment-laws
+    - filename: anti-harassment-training-guide.txt
+      url: https://hsi.com/solutions/employee-training-and-development/anti-harassment-training-programs
