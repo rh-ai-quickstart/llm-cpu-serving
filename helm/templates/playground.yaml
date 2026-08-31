@@ -28,7 +28,7 @@ data:
         provider_type: remote::vllm
         config:
           api_token: ${env.VLLM_API_TOKEN_1:=fake}
-          base_url: http://{{ .Values.model.name }}-predictor.{{ .Release.Namespace }}.svc.cluster.local:8080/v1
+          base_url: http://{{ .Values.model.name }}-predictor.{{ .Release.Namespace }}.svc.cluster.local/v1
           max_tokens: ${env.VLLM_MAX_TOKENS:=4096}
           tls_verify: ${env.VLLM_TLS_VERIFY:=false}
       vector_io:
