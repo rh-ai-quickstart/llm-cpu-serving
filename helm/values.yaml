@@ -70,7 +70,7 @@ aiLifecoach:
 rag:
   seedDocuments:
     - filename: hr-compliance-strategies.txt
-      url: https://www.goco.io/blog/key-hr-compliance-strategies-for-financial-services
+      url: https://mihcm.com/resources/blog/banking-and-financial-services-hr-compliance-what-your-hr-system-must-handle/
     - filename: strong-compliance-culture.txt
       url: https://crosscheckcompliance.com/resources/articles/strong-compliance-culture/
     - filename: understanding-employment-laws.txt
