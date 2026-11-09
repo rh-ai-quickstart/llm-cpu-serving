@@ -193,3 +193,4 @@ helm uninstall ${PROJECT} --namespace ${PROJECT}
 * **Industry:** Banking and securities
 * **Product:** OpenShift AI 
 * **Use case:** Productivity
+* * **Partner:** Intel
